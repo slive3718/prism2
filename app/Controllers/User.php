@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Libraries\PhpMail;
 use App\Models\AbstractCategoriesModel;
 use App\Models\AbstractReviewModel;
+use App\Models\AbstractTopicsModel;
 use App\Models\CitiesModel;
 use App\Models\CountriesModel;
 use App\Models\DesignationsModel;
@@ -152,7 +153,9 @@ class User extends BaseController
 
         $categories = (new AbstractCategoriesModel())->orderBy('name', 'asc')->findAll();
         $paper_type = (new PaperTypeModel())->findAll();
+        $abstract_topics = (new AbstractTopicsModel())->findAll();
 
+//        print_r($abstract_topics);exit;
         $header_data = [
             'title' => "Submission"
         ];
@@ -160,7 +163,8 @@ class User extends BaseController
         $data = [
             'categories' => $categories ?? '',
             'paper_type' => $paper_type ?? '',
-            'notification' => session()->getFlashdata('notification')
+            'notification' => session()->getFlashdata('notification'),
+            'abstract_topics' => $abstract_topics
         ];
         return
             view('event/common/header', $header_data).
@@ -175,6 +179,7 @@ class User extends BaseController
         $paper = (new PapersModel())->where('id', $paper_id)->asArray()->first();
         $categories = (new AbstractCategoriesModel())->orderBy('name', 'asc')->findAll();
         $paper_type = (new PaperTypeModel())->findAll();
+        $abstract_topics = (new AbstractTopicsModel())->findAll();
 
         if(!$paper){
             return 'error';
@@ -191,6 +196,7 @@ class User extends BaseController
             'is_edit' => 1,
             'previous_url' => previous_url(),
             'previous_page' => service('uri')->setURI(previous_url())->getSegment($this->setSegment(3))?? '',
+            'abstract_topics' => $abstract_topics
         ];
         return
             view('event/common/header', $header_data).
