@@ -4,6 +4,7 @@
 
 <?php echo view('event/common/menu'); ?>
 <?php echo view('event/common/event_details'); ?>
+<?php // print_R($paper);exit;?>
 <main>
     <div class="container pb-5">
         <?php echo view('event/common/shortcut_link'); ?>
@@ -97,14 +98,14 @@
                             <div class="form-check">
                                 <label class="form-check-label" for="check1">
                                     <input type="checkbox" class="form-check-input" name="primary_topic[]" value="<?= $topics['value'] ?>"
-                                        <?= isset($abstract_details) && in_array($topics['value'], json_decode($abstract_details[0]['primary_topic'], true)) ? 'checked' : ''; ?>>
+                                        <?= isset($paper['primary_topic']) && in_array($topics['value'], json_decode($paper['primary_topic'], true) ?: []) ? 'checked' : ''; ?>>
                                     <?= $topics['name'] ?>
                                 </label>
                             </div>
                         <?php endforeach; ?>
                     <?php endif ?>
-                    <div class="otherPrimaryTopicDiv" style="display: <?= (isset($abstract_details) && in_array(26, json_decode($abstract_details[0]['primary_topic']))) ? 'block' : 'none' ?>">
-                        <input type="text" name="otherPrimaryTopic" id="otherPrimaryTopic" value="<?= isset($abstract_details) ? $abstract_details[0]['other_primary_topic'] : '' ?>">
+                    <div class="otherPrimaryTopicDiv" style="display: <?= (isset($paper) && in_array(26, json_decode($paper['primary_topic'] ?? []))) ? 'block' : 'none' ?>">
+                        <input type="text" name="other_primary_topic" id="otherPrimaryTopic" value="<?= isset($paper) ? $paper['other_primary_topic'] : '' ?>">
                         <label for="otherPrimaryTopic">Other Primary Topic</label>
                     </div>
                 </div>
@@ -116,14 +117,15 @@
                             <div class="form-check">
                                 <label class="form-check-label" for="check1">
                                     <input type="checkbox" class="form-check-input" name="secondary_topic[]" value="<?= $topics['value'] ?>"
-                                        <?= isset($abstract_details) && in_array($topics['value'], json_decode($abstract_details[0]['secondary_topic'], true)) ? 'checked' : ''; ?>>
+                                        <?= isset($paper['secondary_topic']) && in_array($topics['value'], json_decode($paper['secondary_topic'], true) ?: []) ? 'checked' : ''; ?>>
                                     <?= $topics['name'] ?>
                                 </label>
                             </div>
+
                         <?php endforeach; ?>
                     <?php endif ?>
-                    <div class="otherSecondaryTopicDiv" style="display: <?= (isset($abstract_details) && in_array(26, json_decode($abstract_details[0]['secondary_topic']))) ? 'block' : 'none' ?>">
-                        <input type="text" name="otherSecondaryTopic" id="otherSecondaryTopic" value="<?= isset($abstract_details) ? $abstract_details[0]['other_secondary_topic'] : '' ?>">
+                    <div class="otherSecondaryTopicDiv" style="display: <?= (isset($paper) && in_array(26, json_decode($paper['secondary_topic'] ?? []))) ? 'block' : 'none' ?>">
+                        <input type="text" name="other_secondary_topic" id="otherSecondaryTopic" value="<?= isset($paper) ? $paper['other_secondary_topic'] : '' ?>">
                         <label for="otherSecondaryTopic">Other Secondary Topic</label>
                     </div>
                 </div>
@@ -288,17 +290,18 @@
                         <li>Promote the values of diversity, inclusion and equity as prioritize by the PRiSM Board of Directors and Diversity Committee</li>
                     </ul>
                     <div class="form-group">
-                        <input type="radio" class="form-check-input" name="diversity"  value="yes" id="diversity_yes" <?=(isset($abstract_details)? ($abstract_details[0]->diversity == 'yes')? 'checked':'':'' )?>><label for="diversity_yes">Yes</label>
-                        <input type="radio" class="form-check-input ms-5" name="diversity" value="no" id="diversity_no" <?=(isset($abstract_details)? ($abstract_details[0]->diversity == 'no')? 'checked':'':'' )?>><label for="diversity_no">No</label>
+                        <input type="radio" class="form-check-input" name="diversity"  value="yes" id="diversity_yes" <?=(isset($paper)? ($paper['diversity'] == 'yes')? 'checked':'':'' )?>><label for="diversity_yes">Yes</label>
+                        <input type="radio" class="form-check-input ms-5" name="diversity" value="no" id="diversity_no" <?=(isset($paper)? ($paper['diversity'] == 'no')? 'checked':'':'' )?>><label for="diversity_no">No</label>
                     </div>
                 </div>
 
-                <div class="mt-4 ">
+                <div class="mt-4">
                     <h5 class="fw-bold"><required class="text-danger">*</required> Abstract Award </h5>
                     <p>This abstract focuses on:</p>
 
                     <div class="form-check">
-                        <input type="radio" class="form-check-input form-inline" name="award_information"  value="msk" id="MSK" <?=(isset($abstract_details)? ($abstract_details[0]->award_information == 'msk')? 'checked':'':'' )?>>
+                        <input type="radio" class="form-check-input form-inline" name="award_information" value="msk" id="MSK"
+                            <?= isset($paper) && $paper['award_information'] === 'msk' ? 'checked' : '' ?>>
                         <label for="msk" class="form-check-label">
                             <strong>Diagnosis, Treatment, Management of Medical Conditions (MSK rad/US)</strong>
                             Abstracts related to diagnosis of a condition (including radiologic studies), medical treatments, non-surgical management of injuries, outcomes.
@@ -307,32 +310,39 @@
                     </div>
 
                     <div class="form-check">
-                        <input type="radio" class="form-check-input " name="award_information" value="surgical" id="surgical" <?=(isset($abstract_details)? ($abstract_details[0]->award_information == 'surgical')? 'checked':'':'' )?>>
+                        <input type="radio" class="form-check-input" name="award_information" value="surgical" id="surgical"
+                            <?= isset($paper) && $paper['award_information'] === 'surgical' ? 'checked' : '' ?>>
                         <label for="surgical" class="form-check-label">
                             <strong>Surgical Treatments and Outcomes (pain mgmt, rehab, technique/cadaver)</strong>
                             Surgical treatments and any topic relating to surgical management, such as pain management, rehabilitation after surgery, technique papers, and cadaver studies
                         </label>
                     </div>
+
                     <div class="form-check">
-                        <input type="radio" class="form-check-input " name="award_information" value="injury" id="injury" <?=(isset($abstract_details)? ($abstract_details[0]->award_information == 'injury')? 'checked':'':'' )?>>
+                        <input type="radio" class="form-check-input" name="award_information" value="injury" id="injury"
+                            <?= isset($paper) && $paper['award_information'] === 'injury' ? 'checked' : '' ?>>
                         <label for="injury" class="form-check-label">
                             <strong>Injury Prevention and Motion Analysis</strong>
                             Abstracts related to injury prevention strategies, sports specialization, motion analysis
                         </label>
                     </div>
+
                     <div class="form-check">
-                        <input type="radio" class="form-check-input " name="award_information" value="mental" id="mental" <?=(isset($abstract_details)? ($abstract_details[0]->award_information == 'mental')? 'checked':'':'' )?>>
+                        <input type="radio" class="form-check-input" name="award_information" value="mental" id="mental"
+                            <?= isset($paper) && $paper['award_information'] === 'mental' ? 'checked' : '' ?>>
                         <label for="mental" class="form-check-label">
                             <strong>Mental Health and Wellness</strong>
                             Abstracts related to patient and athlete mental health, sleep, identity, wellness
                         </label>
                     </div>
-                </div>
-                <div class="form-check">
-                    <input type="radio" class="form-check-input " name="award_information" value="n/a" id="not_applicable" <?=(isset($abstract_details)? ($abstract_details[0]->award_information == 'n/a')? 'checked':'':'' )?>>
-                    <label for="not_applicable" class="form-check-label">
-                        <strong>Not Applicable</strong>
-                    </label>
+
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="award_information" value="n/a" id="not_applicable"
+                            <?= isset($paper) && $paper['award_information'] === 'n/a' ? 'checked' : '' ?>>
+                        <label for="not_applicable" class="form-check-label">
+                            <strong>Not Applicable</strong>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="mt-5">
@@ -374,6 +384,11 @@
     let userID = `<?=session('user_id')??''?>`;
     let previousUrl = "<?= $previous_url ?? ''?>"
     let previousPage = "<?= $previous_page ?? '' ?>"
+
+    let topic1_limit = 1;
+    let topic2_limit = 1;
+    let population_limit = 2;
+
     $(function(){
         // $('.summernote').summernote({
         //     tabsize: 2,
@@ -399,6 +414,49 @@
         // });
 
         abstract_body_counter();
+
+
+        $('.primary_topic input[type=checkbox]').on('change', function (e) {
+            if ($('.primary_topic input[type=checkbox]:checked').length > topic1_limit) {
+                $(this).prop('checked', false);
+                swal.fire(
+                    'Please note',
+                    'Please choose one item per topic',
+                    'warning'
+                )
+            }
+        });
+
+        $('.secondary_topic input[type=checkbox]').on('change', function (e) {
+            if ($('.secondary_topic input[type=checkbox]:checked').length > topic2_limit) {
+                $(this).prop('checked', false);
+                swal.fire(
+                    'Please note',
+                    'Please choose one item per topic',
+                    'warning'
+                )
+            }
+        });
+
+        $("input[name='primary_topic[]']").on('change', function() {
+            if ($(this).val() == '26' && $(this).is(':checked')) {
+                $('.otherPrimaryTopicDiv').css('display', 'block');
+            } else {
+                $('.otherPrimaryTopicDiv').css('display', 'none');
+            }
+        });
+
+
+        $("input[name='secondary_topic[]']").on('change', function() {
+            if ($(this).val() == '26' && $(this).is(':checked')) {
+                $('.otherSecondaryTopicDiv').css('display', 'block');
+            } else {
+                $('.otherSecondaryTopicDiv').css('display', 'none');
+            }
+        });
+
+        $("input[name='primary_topic[]").change();
+        $("input[name='secondary_topic[]").change();
     })
 
 

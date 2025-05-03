@@ -238,9 +238,13 @@ class User extends BaseController
         // Prepare data for insertion
         $insert_array = [
             'user_id'                => session('user_id'),
-            'previous_presentation'  => $post['previous_presentation'] ?? null,
+            'primary_topic'      => $post['primary_topic'] ?? null,
+            'other_primary_topic'      => $post['other_primary_topic'] ?? null,
+            'secondary_topic'      => $post['secondary_topic'] ?? null,
+            'other_secondary_topic'      => $post['other_secondary_topic'] ?? null,
+//            'previous_presentation'  => $post['previous_presentation'] ?? null,
             'basic_science_format'   => $post['basic_science_format'] ?? null,
-            'abstract_category'      => $post['abstract_category'] ?? null,
+//            'abstract_category'      => $post['abstract_category'] ?? null,
             'title'                  => $post['abstract_title'] ?? null,
             'hypothesis'             => $post['hypothesis'] ?? null,
             'study_design'           => $post['study_design'] ?? null,
@@ -298,8 +302,12 @@ class User extends BaseController
         // Prepare the update array
         $update_array = [
             'previous_presentation'  => isset($post['previous_presentation']) ? trim($post['previous_presentation']) : $existingPaper['previous_presentation'],
-            'basic_science_format'   => isset($post['basic_science_format']) ? trim($post['basic_science_format']) : $existingPaper['basic_science_format'],
-            'abstract_category'      => isset($post['abstract_category']) ? trim($post['abstract_category']) : $existingPaper['abstract_category'],
+            'primary_topic'         => isset($post['primary_topic']) ? trim(json_encode($post['primary_topic'])) : $existingPaper['primary_topic'],
+            'other_primary_topic'      => isset($post['other_primary_topic']) ? trim($post['other_primary_topic']) : $existingPaper['other_primary_topic'],
+            'secondary_topic'       => isset($post['secondary_topic']) ? trim(json_encode($post['secondary_topic'])) : $existingPaper['secondary_topic'],
+            'other_secondary_topic'  => isset($post['other_secondary_topic']) ? trim($post['other_secondary_topic']) : $existingPaper['other_secondary_topic'],
+//            'basic_science_format'   => isset($post['basic_science_format']) ? trim($post['basic_science_format']) : $existingPaper['basic_science_format'],
+//            'abstract_category'      => isset($post['abstract_category']) ? trim($post['abstract_category']) : $existingPaper['abstract_category'],
             'title'                  => isset($post['abstract_title']) ? trim($post['abstract_title']) : $existingPaper['title'],
             'hypothesis'             => isset($post['hypothesis']) ? trim($post['hypothesis']) : $existingPaper['hypothesis'],
             'study_design'           => isset($post['study_design']) ? trim($post['study_design']) : $existingPaper['study_design'],
