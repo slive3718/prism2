@@ -28,12 +28,67 @@
                                 <span class="text-danger">*</span>
                                 Session Types
                             </h5>
-                            <strong class="fw-bolder">All completed abstract submissions will be reviewed and considered for a podium presentation.</strong>
+                            <strong class="fw-bolder">All completed abstract submissions will be reviewed and considered for all session types.</strong>
                         </div>
                     </div>
                 </div>
 
                 <!-- ##########   Question 1: Previous Presentation ############### -->
+
+
+<!--                <div class="row previous-presentation">-->
+<!--                    <div class="col mt-4">-->
+<!--                        <div id="previous-presentation-container">-->
+<!--                            <h5 class="title">-->
+<!--                                <span class="text-danger">*</span>-->
+<!--                                Previous Presentation-->
+<!--                            </h5>-->
+<!--                            <p>Was this paper previously presented at an SRS IMAST or Annual Meeting?</p>-->
+<!--                            <input type="radio" name="previous_presentation" id="previous_presentation_yes" value="Yes" class="form-input" --><?php //=(!empty($paper) && $paper['previous_presentation'] == "Yes" ? 'checked' : '')?><!-->-->
+<!--                            <label for="previous_presentation_yes"> Yes, this paper has previously been presented at SRS IMAST or Annual Meeting </label> <br>-->
+<!--                            <input type="radio" name="previous_presentation" id="previous_presentation_no" value="No" class="form-input" --><?php //=(!empty($paper) && $paper['previous_presentation'] == "No" ? 'checked' : '')?><!-->-->
+<!--                            <label for="previous_presentation_no"> No, this paper has not been previously presented at SRS IMAST or Annual Meeting </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <!-- ##########   Question 2: Basic Science Proposal Format ############### -->
+                <div class="row basic-science-format">
+                    <div class="col mt-4">
+                        <div id="basic-science-format-container">
+                            <h5 class="title">
+                                <span class="text-danger">*</span>
+                                This Abstract is:
+                            </h5>
+                            <p>Is your proposal in a Basic Science format?</p>
+                            <input type="radio" name="basic_science_format" id="basic_science_format_yes" value="Yes" <?=(!empty($paper) && $paper['basic_science_format'] == "Yes" ? 'checked' : '')?>>
+                            <label for="basic_science_format_yes"> Quantitative</label> <br>
+                            <input type="radio" name="basic_science_format" id="basic_science_format_no" value="No" <?=(!empty($paper) && $paper['basic_science_format'] == "No" ? 'checked' : '')?>>
+                            <label for="basic_science_format_no"> Qualitative</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ##########   Question 3: Abstract Category ############### -->
+<!--                <div class="row abstract-category">-->
+<!--                    <div class="col mt-4">-->
+<!--                        <div id="abstract-category-container">-->
+<!--                            <h5 class="title">-->
+<!--                                <span class="text-danger">*</span>-->
+<!--                                Abstract Category-->
+<!--                            </h5>-->
+<!--                            <label for="abstract_category">Please choose a category:</label>-->
+<!--                            <select name="abstract_category" id="abstract_category" class="form-control">-->
+<!--                                <option id="abstract_category_default" value=""> -- Select Category --</option>-->
+<!--                                --><?php //if(!empty($categories)): ?>
+<!--                                    --><?php //foreach ($categories as $category) : ?>
+<!--                                        <option id="abstract_category_--><?php //=$category['category_id']?><!--" value="--><?php //=$category['category_id']?><!--" --><?php //=(!empty($paper) && $paper['abstract_category'] == $category['category_id'] ? 'selected' : '')?><!--  >--><?php //=$category['name']?><!--</option>-->
+<!--                                    --><?php //endforeach; ?>
+<!--                                --><?php //endif ?>
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <div class="mt-4 primary_topic">
                     <h5>Primary Topic (please select 1)</h5>
@@ -73,84 +128,27 @@
                     </div>
                 </div>
 
-
-
-
-                <div class="row previous-presentation">
-                    <div class="col mt-4">
-                        <div id="previous-presentation-container">
-                            <h5 class="title">
-                                <span class="text-danger">*</span>
-                                Previous Presentation
-                            </h5>
-                            <p>Was this paper previously presented at an SRS IMAST or Annual Meeting?</p>
-                            <input type="radio" name="previous_presentation" id="previous_presentation_yes" value="Yes" class="form-input" <?=(!empty($paper) && $paper['previous_presentation'] == "Yes" ? 'checked' : '')?>>
-                            <label for="previous_presentation_yes"> Yes, this paper has previously been presented at SRS IMAST or Annual Meeting </label> <br>
-                            <input type="radio" name="previous_presentation" id="previous_presentation_no" value="No" class="form-input" <?=(!empty($paper) && $paper['previous_presentation'] == "No" ? 'checked' : '')?>>
-                            <label for="previous_presentation_no"> No, this paper has not been previously presented at SRS IMAST or Annual Meeting </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ##########   Question 2: Basic Science Proposal Format ############### -->
-                <div class="row basic-science-format">
-                    <div class="col mt-4">
-                        <div id="basic-science-format-container">
-                            <h5 class="title">
-                                <span class="text-danger">*</span>
-                                Basic Science Proposal Format
-                            </h5>
-                            <p>Is your proposal in a Basic Science format?</p>
-                            <input type="radio" name="basic_science_format" id="basic_science_format_yes" value="Yes" <?=(!empty($paper) && $paper['basic_science_format'] == "Yes" ? 'checked' : '')?>>
-                            <label for="basic_science_format_yes"> Yes</label> <br>
-                            <input type="radio" name="basic_science_format" id="basic_science_format_no" value="No" <?=(!empty($paper) && $paper['basic_science_format'] == "No" ? 'checked' : '')?>>
-                            <label for="basic_science_format_no"> No</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ##########   Question 3: Abstract Category ############### -->
-                <div class="row abstract-category">
-                    <div class="col mt-4">
-                        <div id="abstract-category-container">
-                            <h5 class="title">
-                                <span class="text-danger">*</span>
-                                Abstract Category
-                            </h5>
-                            <label for="abstract_category">Please choose a category:</label>
-                            <select name="abstract_category" id="abstract_category" class="form-control">
-                                <option id="abstract_category_default" value=""> -- Select Category --</option>
-                                <?php if(!empty($categories)): ?>
-                                    <?php foreach ($categories as $category) : ?>
-                                        <option id="abstract_category_<?=$category['category_id']?>" value="<?=$category['category_id']?>" <?=(!empty($paper) && $paper['abstract_category'] == $category['category_id'] ? 'selected' : '')?>  ><?=$category['name']?></option>
-                                    <?php endforeach; ?>
-                                <?php endif ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- ##########   Abstract Body Section ############### -->
-                <div class="row abstract-body">
-                    <div class="col mt-4">
-                        <div id="abstract-body-container">
-                            <h5 class="title">
-                                <span class="text-danger">*</span>
-                                Abstract Body
-                            </h5>
-                            <p>Abstract body is limited to 2500 characters which includes: Title, Hypothesis, Study Design, Introduction, Methods, Results, and Conclusions. The character count includes titles, spaces, abstract body, and table/image captions. It does not include authors or institutions. Please save your work intermittently by using the 'save' option at the bottom of the page.</p>
-                            <p>To maintain an unbiased, blinded review of all abstracts, please do NOT include any identifying information such as researcher, institution, or study group names in your abstract. Inclusion of any identifying information will disqualify your abstract from review.</p>
-                            <p>Please note: this text is what will be printed in the Final Program if it is accepted. You WILL NOT BE ABLE TO EDIT IT AFTER THE SUBMISSION DEADLINE.</p>
-                            <div class="text-center m-auto p-4" style="width: 600px; border:4px dotted black">
-                                Total Abstract Body Count: <span id="abstract_body_count">0 characters</span> <br>
-                                <?php if(!empty($paper) && trim($paper['image_caption']) !== ''): ?>
-                                Image Caption Body Count: <span id="image_caption_body_count" >0 characters</span><br>
-                                <?php endif ?>
-                                Limit: 2500
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="row abstract-body">-->
+<!--                    <div class="col mt-4">-->
+<!--                        <div id="abstract-body-container">-->
+<!--                            <h5 class="title">-->
+<!--                                <span class="text-danger">*</span>-->
+<!--                                Abstract Body-->
+<!--                            </h5>-->
+<!--                            <p>Abstract body is limited to 2500 characters which includes: Title, Hypothesis, Study Design, Introduction, Methods, Results, and Conclusions. The character count includes titles, spaces, abstract body, and table/image captions. It does not include authors or institutions. Please save your work intermittently by using the 'save' option at the bottom of the page.</p>-->
+<!--                            <p>To maintain an unbiased, blinded review of all abstracts, please do NOT include any identifying information such as researcher, institution, or study group names in your abstract. Inclusion of any identifying information will disqualify your abstract from review.</p>-->
+<!--                            <p>Please note: this text is what will be printed in the Final Program if it is accepted. You WILL NOT BE ABLE TO EDIT IT AFTER THE SUBMISSION DEADLINE.</p>-->
+<!--                            <div class="text-center m-auto p-4" style="width: 600px; border:4px dotted black">-->
+<!--                                Total Abstract Body Count: <span id="abstract_body_count">0 characters</span> <br>-->
+<!--                                --><?php //if(!empty($paper) && trim($paper['image_caption']) !== ''): ?>
+<!--                                Image Caption Body Count: <span id="image_caption_body_count" >0 characters</span><br>-->
+<!--                                --><?php //endif ?>
+<!--                                Limit: 2500-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <!-- ##########   Question 4: Abstract Title ############### -->
                 <div class="row abstract-title">
@@ -160,9 +158,23 @@
                                 <span class="text-danger">*</span>
                                 Abstract Title
                             </h5>
-                            <p>PLEASE enter this title in mixed title case. Do NOT use capital letters and do NOT put the title in quotation marks.</p>
-                            <label for="abstract_title"> <span class="text-success">CORRECT </span> - This is the Title Of My Abstract <span class="text-danger">INCORRECT </span> = THIS IS THE TITLE OF MY ABSTRACT <span class="text-danger">INCORRECT </span> = This is the title of my abstract</label>
+                            <p>Abstract titles must be written in ALL CAPITAL letters.</p>
+                            <label for="abstract_title"> <span class="text-success">CORRECT </span> - THIS IS THE TITLE OF MY ABSTRACT</label>
                             <textarea name="abstract_title" id="abstract_title" class="form-control countWords mt-2" rows="1" placeholder="Abstract Title" ><?=(!empty($paper) ? $paper['title'] : '')?></textarea>
+                            <label class="counted_words fw-bolder"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ##########   Question 6: Study Design ############### -->
+                <div class="row study-design">
+                    <div class="col mt-4">
+                        <div id="study-design-container">
+                            <label for="study_design" class="title">
+                                <span class="text-danger">*</span>
+                                Background
+                            </label>
+                            <textarea name="study_design" id="study_design" class="form-control countWords" rows="4" placeholder="Describe the study design..."><?=(!empty($paper) ? $paper['study_design'] : '')?></textarea>
                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
@@ -177,34 +189,6 @@
                                 Hypothesis
                             </label>
                             <textarea name="hypothesis" id="hypothesis" class="form-control countWords" rows="4" placeholder="Enter your hypothesis..."><?=(!empty($paper) ? $paper['hypothesis'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ##########   Question 6: Study Design ############### -->
-                <div class="row study-design">
-                    <div class="col mt-4">
-                        <div id="study-design-container">
-                            <label for="study_design" class="title">
-                                <span class="text-danger">*</span>
-                                Study Design
-                            </label>
-                            <textarea name="study_design" id="study_design" class="form-control countWords" rows="4" placeholder="Describe the study design..."><?=(!empty($paper) ? $paper['study_design'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ##########   Question 7: Introduction ############### -->
-                <div class="row introduction">
-                    <div class="col mt-4">
-                        <div id="introduction-container">
-                            <label for="introduction" class="title">
-                                <span class="text-danger">*</span>
-                                Introduction
-                            </label>
-                            <textarea name="introduction" id="introduction" class="form-control countWords" rows="4" placeholder="Write the introduction..."><?=(!empty($paper) ? $paper['introduction'] : '')?></textarea>
                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
@@ -252,28 +236,42 @@
                     </div>
                 </div>
 
-                <!-- ##########   Question 11: Additional Notes ############### -->
-                <div class="row additional-notes">
+                <!-- ##########   Question 7: Introduction ############### -->
+                <div class="row introduction">
                     <div class="col mt-4">
-                        <div id="additional-notes-container">
-                            <label for="additional_notes" class="title">
-                                Additional Notes
+                        <div id="introduction-container">
+                            <label for="introduction" class="title">
+                                <span class="text-danger">*</span>
+                                Reference
                             </label>
-                            <textarea name="additional_notes" id="additional_notes" class="form-control" rows="4" placeholder="Enter any additional notes..."><?=(!empty($paper) ? $paper['additional_notes'] : '')?></textarea>
+                            <textarea name="introduction" id="introduction" class="form-control countWords" rows="4" placeholder="Write the introduction..."><?=(!empty($paper) ? $paper['introduction'] : '')?></textarea>
                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
 
+                <!-- ##########   Question 11: Additional Notes ############### -->
+<!--                <div class="row additional-notes">-->
+<!--                    <div class="col mt-4">-->
+<!--                        <div id="additional-notes-container">-->
+<!--                            <label for="additional_notes" class="title">-->
+<!--                                Additional Notes-->
+<!--                            </label>-->
+<!--                            <textarea name="additional_notes" id="additional_notes" class="form-control" rows="4" placeholder="Enter any additional notes...">--><?php //=(!empty($paper) ? $paper['additional_notes'] : '')?><!--</textarea>-->
+<!--                            <label class="counted_words fw-bolder"></label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
                 <!-- ##########   Question 11: Image Caption : for counting purposes only ############### -->
-                <div class="row image_caption" style="display: none">
-                    <div class="col mt-4">
-                        <div id="image-caption-container">
-                            <textarea name="image_caption" id="image_caption" class="form-control countWordsCaption" rows="4" placeholder="Enter any additional notes..."><?=(!empty($paper) ? $paper['image_caption'] : '')?></textarea>
-                            <label class="counted_words_caption fw-bolder"></label>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="row image_caption" style="display: none">-->
+<!--                    <div class="col mt-4">-->
+<!--                        <div id="image-caption-container">-->
+<!--                            <textarea name="image_caption" id="image_caption" class="form-control countWordsCaption" rows="4" placeholder="Enter any additional notes...">--><?php //=(!empty($paper) ? $paper['image_caption'] : '')?><!--</textarea>-->
+<!--                            <label class="counted_words_caption fw-bolder"></label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
                 <div>
@@ -340,10 +338,10 @@
                 <div class="mt-5">
                     <p>Abstracts accepted for presentation at the 12th Annual Meeting may qualify for the following awards:</p>
                     <ul>
-                        <li>Hank Chambers Award for Best Scientific Presentation</li>
-                        <li>Kevin G. Shea Award for Best Scientific Poster</li>
-                        <li>Mininder S. Kocher Award for Most Promising Career</li>
-                        <li>Inclusion and Equity Award</li>
+                        <li>Hank Chambers: Best Scientific Presentation</li>
+                        <li>Kevin Shea: for Best Scientific Poster</li>
+                        <li>Mininder Kocher: Most Promising Career</li>
+                        <li>Cordelia Carter: Inclusion and Equity Award</li>
                     </ul>
                 </div>
 

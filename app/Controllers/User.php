@@ -215,9 +215,11 @@ class User extends BaseController
 
         // Define validation rules
         $validationRules = [
-            'previous_presentation'  => 'required',
-            'basic_science_format'  => 'required',
-            'abstract_category'      => 'required',
+            'primary_topic'      => 'required',
+            'secondary_topic'      => 'required',
+//            'previous_presentation'  => 'required',
+            'basic_science_format'   => 'required',
+//            'abstract_category'      => 'required',
             'abstract_title'         => 'required',
             'hypothesis'             => 'required',
             'study_design'           => 'required',
@@ -225,6 +227,8 @@ class User extends BaseController
             'methods'                => 'required',
             'results'                => 'required',
             'conclusions'            => 'required',
+            'diversity'              => 'required',
+            'award_information'      => 'required',
         ];
 
         if (!$this->validate($validationRules)) {
@@ -233,8 +237,8 @@ class User extends BaseController
 
         // Prepare data for insertion
         $insert_array = [
-            'user_id'               => session('user_id'),
-            'previous_presentation' => $post['previous_presentation'] ?? null,
+            'user_id'                => session('user_id'),
+            'previous_presentation'  => $post['previous_presentation'] ?? null,
             'basic_science_format'   => $post['basic_science_format'] ?? null,
             'abstract_category'      => $post['abstract_category'] ?? null,
             'title'                  => $post['abstract_title'] ?? null,
@@ -245,7 +249,9 @@ class User extends BaseController
             'results'                => $post['results'] ?? null,
             'conclusions'            => $post['conclusions'] ?? null,
             'additional_notes'       => $post['additional_notes'] ?? null,
-            'abstract_body_count'       => $post['abstract_body_count'] ?? null,
+            'abstract_body_count'    => $post['abstract_body_count'] ?? null,
+            'diversity'              => $post['diversity'] ?? null,
+            'award_information'      => $post['award_information'] ?? null,
         ];
 
         try {
@@ -302,7 +308,9 @@ class User extends BaseController
             'results'                => isset($post['results']) ? trim($post['results']) : $existingPaper['results'],
             'conclusions'            => isset($post['conclusions']) ? trim($post['conclusions']) : $existingPaper['conclusions'],
             'additional_notes'       => isset($post['additional_notes']) ? trim($post['additional_notes']) : $existingPaper['additional_notes'],
-            'abstract_body_count'      => isset($post['abstract_body_count']) ? trim($post['abstract_body_count']) : $existingPaper['abstract_body_count'],
+            'diversity'              => isset($post['diversity']) ? trim($post['diversity']) : $existingPaper['diversity'],
+            'award_information'      => isset($post['award_information']) ? trim($post['award_information']) : $existingPaper['award_information'],
+            'abstract_body_count'    => isset($post['abstract_body_count']) ? trim($post['abstract_body_count']) : $existingPaper['abstract_body_count'],
             'min_follow_up_period'   => isset($post['min_follow_up_period']) ? trim($post['min_follow_up_period']) : $existingPaper['min_follow_up_period'],
             'is_srs_funded'          => isset($post['is_srs_funded']) ? trim($post['is_srs_funded']) : $existingPaper['is_srs_funded'],
             'primary_investigator'   => isset($post['primary_investigator']) ? trim($post['primary_investigator']) : $existingPaper['primary_investigator'],

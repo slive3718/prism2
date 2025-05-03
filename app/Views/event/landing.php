@@ -28,9 +28,9 @@
     <div class="container shadow-lg glass-container container-landing">
         <div class="card">
             <div class="container p-5 ">
-                <p class="text-center mb-3 fw-bolder">SRS Asia Pacific Meeting</p>
-                <p class="text-center fw-bolder">Fukuoka, Japan<br>February 2026</p>
-                <p class="text-center fw-bolder">Abstract Submission: May 1, 2025 – June 30, 2025</p>
+                <p class="text-center mb-3 fw-bolder">PRiSM 2026 Meeting</p>
+<!--                <p class="text-center fw-bolder">Fukuoka, Japan<br>February 2026</p>-->
+<!--                <p class="text-center fw-bolder">Abstract Submission: May 1, 2025 – June 30, 2025</p>-->
 
                 <div class="row mt-4">
                     <div class="text-center ">
@@ -44,156 +44,176 @@
                         <button onClick="window.location.href='<?=base_url()?>login'" class="glass-button w-700  btn btn-primary btn-lg align-center" type="button">Please click here to submit / edit  your submission</button>
                     </div>
                 </div>
-
-                <h6 class="fw-bold mt-5">IMPORTANT DATES</h6>
-                <ul >
-                    <li><strong>Abstract Submission: </strong> May 1, 2025 – June 30, 2025, at 11:59 Japan Standard Time</li>
-                    <li><strong>Abstract Acceptance Notification via E-mail: </strong> September 4, 2025*</li>
-                    <li><strong>Abstract Presenter Acceptance Deadline:</strong>  October 2, 2025*</li>
-                    <li><strong>Meeting Dates:</strong>  <span class="text-danger">February 6-7 2026 </span></li>
-                </ul>
-                <p>*Dates are subject to change.</p>
-
-                <div class="text-center mt-5">
-                    <h6 class="fw-bolder"> <u> Prior to submission of an abstract, please review all information on this page</u></h6>
-                </div>
-
-                <h6 class="fw-bold mt-5">ASIA & OCEANIA AUTHORSHIP</h6>
-                <p>This inaugural meeting will be for the region, by the region. Therefore, a submitted abstract must have a senior author or presenting author and a majority of the authors representing the AP/Oceania region.</p>
-
-                <h6 class="fw-bold mt-5">SRS MEMBERSHIP</h6>
-                <p>Abstracts may be submitted by SRS members and non-members.</p>
-
-                <h6 class="fw-bold mt-5">ABSTRACT SUBMISSION SITE</h6>
-                <ul>
-                    <li>Please log in to submit your abstract here.</li>
-                    <li>If you have not submitted a proposal to SRS before or submitted one prior to 2020, you will need to create a new account.</li>
-                    <li>Submitters may revisit the site as often as necessary to edit the submission (finalized or not) at any time before the submission deadline.</li>
-                    <li>No changes can be made to the abstract text after the submission deadline.</li>
-                </ul>
-
-                <h6 class="fw-bold mt-5">ABSTRACT CATEGORIES</h6>
-                <ul>
-                    <li>Adolescent Idiopathic Scoliosis</li>
-                    <li>Adult Spinal Deformity</li>
-                    <li>Basic/Translational Science</li>
-                    <li>Cervical Deformity</li>
-                    <li>Early Onset Scoliosis</li>
-                    <li>Kyphosis (SK, Congenital and Pathological Conditions)</li>
-                    <li>Miscellaneous Categories (Spondy, Trauma, Tumor, etc.)</li>
-                    <li>Neuromuscular/Syndromic Deformity</li>
-                    <li>Non-Operative Treatment Methods</li>
-                    <li>Quality/Safety/Value/Complications</li>
-                </ul>
-
-                <h6 class="fw-bold mt-5">ABSTRACT SUBMISSION: KEY INFORMATION</h6>
-                <ul>
-                    <li>Abstracts are limited to a maximum of 2,500 characters.</li>
-                    <li>Characters in the abstract title, body and table/image caption will be counted (including spaces).</li>
-                    <li>Characters in the author and institution listing will not be counted.</li>
-                    <li>For each co-author listed, you will need:
-                        <ul>
-                            <li>Full name</li>
-                            <li>Designation/degree</li>
-                            <li>Email (please ensure to double check all email addresses are correct)</li>
-                            <li>Country</li>
-                            <li>Institution/affiliation</li>
-                        </ul>
-                    </li>
-                    <li>Only one (1) attachment is allowed per abstract. Attachments can include graphs, figures, images, or supplemental data.</li>
-                    <li>All submitted abstracts will undergo a blinded review. To maintain an unbiased review of all abstracts, please do NOT include any identifying information such as researcher, institution, or study group names in your abstract. Inclusion of any identifying information will disqualify your abstract from review.</li>
-                </ul>
-
-                <h6 class="fw-bold mt-5">PREVIOUS PRESENTATION</h6>
-                <ul>
-                    <li>Abstracts that have been presented or have been accepted to present at an SRS Annual Meeting or IMAST may not be considered for submission to this meeting.</li>
-                    <li>Any paper accepted and presented at this meeting can be submitted for SRS Annual Meeting after a two-year follow-up</li>
-                    <ul>
-                        <li>
-                            These papers will be reviewed as an original paper. They will not be considered follow-ups.
-                        </li>
-                    </ul>
-                </ul>
-
-                <h6 class="fw-bold mt-5">TWO-YEAR FOLLOW UP REQUIREMENT</h6>
-                <p>ONE-YEAR FOLLOW UP REQUIREMENT  One-year clinical follow-up is required for abstract submission. The one-year follow-up rule does not apply to categories of basic science or biomechanical studies or for topics where one-year follow-up is irrelevant, such as 30-day readmission rates.</p>
-
-                <h6 class="fw-bold mt-5">DISCLOSURES</h6>
-                <p>
-                    The Scoliosis Research Society (SRS) must ensure balance, independence,
-                    objectivity and scientific rigor in all educational activities. Therefore,
-                    ALL abstract authors must disclose <strong> all financial relationships held in the past 24 months with ineligible companies.* </strong>
-                    If the financial relationship has occurred in the past 24 months, but has since ended, we still require you to disclose the relationship.
-                </p>
-
-                <div class="mb-4">
-                    Visit this link to disclose:  <a onClick="window.location.href='<?=base_url().'author'?>'" class="glass-button  btn btn-primary align-center" type="button">Disclosure</a> <br>
-                    <i class="bg-warning bg-opacity-50">Please use the email address that was used in the abstract you are part of. </i>
-                </div>
-
-                <p><i>*An ineligible company is an entity whose primary business is producing, marketing, selling, re-selling, or distributing health care goods or services consumed by or on patients. For specific examples of ineligible companies visit accme.org/standards.</i></p>
-
-                <p>
-                    <i>
-                    If any faculty member in an accepted Education Session does not complete their Relevant Financial
-                    Relationship Disclosures, they will be removed from the Session and will need to be replaced.
-                    </i>
-                </p>
-                <h6 class="fw-bold mt-5">NOTIFICATIONS</h6>
-                <ul>
-                    <li>All submitters will be notified via email of the status of their submission(s). In the event that you do not receive notifications, please log into the submission site at ANY time to view any recent mail regarding your submissions.</li>
-                </ul>
-
-                <h6 class="fw-bold mt-5">ACCEPTANCE</h6>
-                <ul>
-                    <li>All selected authors will be required to respond to a formal invitation by the deadline set forth in their acceptance notification.</li>
-                    <li><i class="fw-bolder">Authors without an account AND an updated disclosure cannot be added after the invitation response deadline. <u>No exceptions will be made </u></i>.</li>
-                </ul>
-
-                <h6 class="fw-bold mt-5">ATTENDANCE REQUIREMENTS</h6>
-                <ul>
-                    <li>By submitting an abstract to SRS Asia Pacific Meeting, abstract authors agree that at least one (l) author will attend the meeting and will be available to present, in English, on the date and time assigned.
-                        <ul>
-                            <li>The Presenting author must be from the regions of Asia or Oceania.</li>
-                        </ul>
-                    </li>
-                    <li>Presenting authors are expected to register to attend the meetings for which they are accepted by
-                        the deadline set forth in their acceptance notification. Submissions for which an author is not
-                        pre-registered by the dates set forth may be withdrawn from the program.
-                    </li>
-                    <li>All travel arrangements are the responsibility of the authors.</li>
-                </ul>
 
                 <div>
-
-                    <h6 class="fw-bold mt-5">PODIUM PRESENTATION CANCELLATION & NO-SHOW POLICY </h6>
-                    <p> Authors unable to present their paper in person should inform SRS as soon as possible which co-author
-                        will present in their place. If no one is able to present the paper, SRS must be informed by October 23,
-                        2025, so an alternate paper can substituted.
-                    </p>
-                    <p> <i>In the case of a "no-show" podium presentation, the presenting author associated with the "no-show"
-                            paper will be prohibited from presenting any papers at the next two Annual Meetings.</i></p>
+                    <p align="center"><strong>ABSTRACT SUBMISSION GUIDELINES</strong></p>
                 </div>
 
-                <h6 class="fw-bold mt-5">TECHNOLOGY TROUBLESHOOTING</h6>
+                <p><strong>INSTRUCTIONS TO SUBMITTERS</strong></p>
+                <p>The Scientific Program Committee invites you to contribute to the scientific program for the 12<sup>th</sup> Annual Meeting with this call for submissions of original scientific abstracts.</p>
+                <p>Submissions must be relevant to the field of pediatric sports medicine and may cover topics including (but not limited to):</p>
+                <!--                    <p>The PRiSM 11<sup>th</sup> Annual Meeting welcomes the submission of abstracts for original contribution to the field of pediatric sports medicine. To be considered for presentation, your abstract should involve or relate to a pediatric/adolescent population, either explicitly or primarily. Topics of specific interest include, but are not limited to, the following:</p>-->
+                <!--                    <p>&nbsp;</p>-->
+                <div class=" shadow-sm my-5">
+                    <table class="table table-bordered" cellspacing="0" cellpadding="0" border="1">
+                        <tbody>
+                        <tr>
+                            <td>Adapted Sports</td>
+                            <td>Bone Injuries and Conditions</td>
+                            <td>Concussion and Head Injuries</td>
+                        </tr>
+                        <tr>
+                            <td>Diagnostic Imaging</td>
+                            <td>Epidemiology and Public Health</td>
+                            <td>Female Athlete</td>
+                        </tr>
+                        <tr>
+                            <td>Illness and Injury Prevention</td>
+                            <td>Joint Injuries and Conditions</td>
+                            <td>Motion Analysis and Biomechanics</td>
+                        </tr>
+                        <tr>
+                            <td>Physical Activity / Physical Literacy</td>
+                            <td>Rehabilitation and Return to Sport</td>
+                            <td>Social Issues in Sport</td>
+                        </tr>
+                        <tr>
+                            <td>Soft Tissue Injuries and Conditions</td>
+                            <td>Spine Injuries and Conditions</td>
+                            <td>Sports Nutrition and Performance</td>
+                        </tr>
+                        <tr>
+                            <td>Sport Specialization</td>
+                            <td>Sport Psychology / Mental Health</td>
+                            <td>Treatment Techniques and Outcomes</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Notifications of acceptance will be delivered to submitting authors via email before October 11th. Thank you for your patience.  The Scientific Program Committee reserves the right to decline any abstract that does not meet all submission requirements.</p>
+
+                <br>
+                <!--                    <p><strong>ABSTRACT SUBMISSION GUIDELINES</strong></p><br>-->
+                <!--                    <ul>-->
+                <!--                        <li>All submitters MUST begin by creating a new account.</li>-->
+                <!--                        <li>For each author you will need: full name, designation/degree, email, and institution/affiliation name.</li>-->
+                <!--                        <li>Please ensure all email addresses for all participants are correct.</li>-->
+                <!--                        <li>For technical assistance, please click on the &apos;Support Form&apos; icon located on the top right hand of each page for support. Support requests are answered within a 24-hour period.</li>-->
+                <!--                        <li>Browser back and forward arrows have been disabled. Users must use the page progress bar located at the top left of each page.</li>-->
+                <!--                        <li>Submitters may revisit the site as often as necessary to edit the submission (finalized or not) at any time before the submission deadline.</li>-->
+                <!--                        <li>Please use one of the following browsers: Mozilla Firefox 4+, Safari 5+, Chrome 14+, or Edge. We do not recommend Internet Explorer.</li>-->
+                <!--                        <li>Inactivity of more than 90 minutes on system pages will result in a session time out. Please save your pages intermittently to avoid loss of data.</li>-->
+                <!--                        <li><strong>Please note</strong>: In order to successfully receive emails regarding your submission, you must add &apos;@owpm2.com&apos; as a safe sender in your email client. <a href="https://speakerready.com/abstracts/safe_sender_how_to.pdf" target="_blank">Click here</a> for help adding safe senders. Mail client examples include Microsoft Outlook, IBM Lotus Notes, Pegasus Mail, Mozilla&apos;s Thunderbird.</li>-->
+                <!--                    </ul>-->
+                <!--                    <p><strong></strong></p>-->
+
+                <!--                    <p>Please review this information carefully and submit your abstract in accordance with these guidelines.</p>-->
+                <p>The PRiSM Scientific Program Committee reserves the right to decline any abstract that does not meet the requirements outlined below.&nbsp;</p>
+                <p>&nbsp;</p>
+                <p><strong>Abstract Submission Deadline</strong></p>
+                <p>The deadline for abstract submission for the PRiSM 12<sup>th</sup> Annual Meeting is <strong>Monday</strong><strong>, July 8, 2024 at 5 pm ET.&nbsp;</strong></p>
+                <p>&nbsp;</p>
+                <p><strong>ABSTRACT SUBMISSION GUIDELINES</strong></p><br>
+                <ol>
+                    <li>Abstracts must be written in English.</li>
+                    <li>Abstract titles must be written in ALL CAPITAL letters.</li>
+                    <li>Abstracts are limited to 400 words (including the headings Background, Hypothesis, Methods, Results, and Conclusions). Author names and affiliate institutions are not included in the word count. </li>
+                    <li>Generic drug and device names may be used, but commercial (product and/or brand) drug and device names are not permitted in the abstract or presentation. </li>
+                    <li>Abstract submissions may be edited until the abstract submission deadline of July 8, 2024.</li>
+                    <li>All abstracts submitted must be original science, not previously presented as peer-reviewed original material at any other regional, national, or international scientific conference.</li>
+                    <li>Abstracts derived from articles published before the submission deadline are not eligible for presentation at the PRiSM Annual Meeting.</li>
+                    <li>The Scientific Program Committee will make the final decision as to an abstract’s acceptance and presentation format (podium, poster, or e-poster).</li>
+                    <li>There is no limit to the number of abstracts an author can submit, but presenters are limited to two (2) podium presentations and one (1) poster presentation at the 2025 Annual Meeting. </li>
+                    <li>You may upload two associated jpg files that are 750 pixels wide. If you have no images to include then proceed to option two. Image Requirements: JPEG only and 750 pixels wide.</li>
+                </ol>
+
+                <br>
+                <p><strong>ABSTRACT SUBMISSION PROCESS</strong></p>
+                <p>Abstracts will be submitted online.</p>
+                <p>Abstracts will be submitted online in a text box, with only the body of the abstract included (no author names or institutions). It is very important that you only submit the body of the abstract in the text box, as this will be used for the blinded review process. You may upload two associated jpg files that are 750 pixels wide. Any graphic tables need to be saved as jpgs.</p>
+
+                <br>
+
+                <!--                    <div class="row">-->
+                <!--                        <a href="--><?php //=base_url()?><!--/--><?php //=$event->uri?><!--/login">-->
+                <!--                            <div class="d-grid gap-2">-->
+                <!--                                <button class="btn btn-primary btn-lg" type="button">Submit Or Update Abstract</button>-->
+                <!--                            </div>-->
+                <!--                        </a>-->
+                <!--                    </div>-->
+                <!--                    <br>-->
+
+
+                <p><strong>ABSTRACT REVIEW AND SELECTION</strong></p>
+                <p>A multi-disciplinary panel of PRiSM members will blindly review and score each abstract submission. Average numerical scores are used to inform the committee’s acceptance decisions. Abstracts are scored based on the following criteria:</p>
+
                 <ul>
-                    <li>Please use one of the following browsers: Mozilla Firefox 4+, Safari 5+, Chrome 14+, Microsoft Edge</li>
-                    <li>Inactivity of more than 90 minutes on system pages will result in a session time out. Please save your pages intermittently to avoid loss of data.</li>
-                    <li>To successfully receive emails regarding your submission, you must add "@owpm2.com" as a
-                        safe sender in your email client. <a href="<?=base_url('assets/documents/Safe_Senders_2025.pdf')?>">Click here </a> for more information about adding safe senders.</li>
+                    <li>Scientific quality and objectivity</li>
+                    <li>Topic originality and desirability</li>
+                    <li>Writing clarity and organization</li>
+                    <li>Subject matter relevance and contribution to pediatric sports medicine </li>
                 </ul>
 
-                <div class="row mt-5">
-                    <div class="col justify-content-center text-center ">
-                        <button onClick="window.location.href='<?=base_url()?>login'" class="glass-button w-700  btn btn-primary btn-lg align-center" type="button">Please click here to submit / edit  your submission</button>
-                    </div>
-                </div>
+                <p>The Scientific Program Committee will issue acceptance notifications via email in September 2024.</p>
+                <p>The presenting author for podium and poster presentations must register, pay all applicable registration fees, and attend the 12<sup>th</sup> Annual Meeting.</p>
+                <br>
+                <p><strong>ABSTRACT AWARDS</strong></p>
+                <p>Abstracts accepted for presentation at the 12<sup>th</sup> Annual Meeting may qualify for the following awards:</p>
+                <ul>
+                    <li>Hank Chambers Award for Best Scientific Presentation</li>
+                    <li>Kevin G. Shea Award for Best Scientific Poster</li>
+                    <li>Mininder S. Kocher Award for Most Promising Career</li>
+                    <li>Inclusion and Equity Award</li>
+                </ul>
+
+                <p><strong>TRAINEE TRAVEL GRANT AWARDS</strong></p>
+                <p>The PRiSM Annual Meeting is an opportunity for researchers and clinicians from varied professional backgrounds to come together to present and discuss a wide variety of pediatric sports medicine topics.
+                    The PRiSM Trainee Travel Grant Awards provide trainees across multiple disciplines with the opportunity to present their research to meeting attendees during a dedicated scientific session.
+                    Additionally, award recipients will receive complimentary registration to the 12<sup>th</sup> Annual Meeting and reimbursement of travel and lodging expenses (up to $1000.00).
+                    <a href="<?=base_url().'assets/documents/2024_Travel_Grant_Instructions.pdf'?>" target="_blank">Click here for Trainee Travel Grant Instructions.</a></p>
+                <p class="xmsonormal">The Trainee Travel Grant Awards are made possible through a NIH R13 grant that aims to foster an environment of collaboration among a diverse set of students and trainees involved in pediatric sports medicine research.</p>
+
+                <p><strong>Award Eligibility Requirements </strong></p>
+                <p>To qualify for these awards, trainees must be enrolled in an academic or clinical training program that involves pediatric sports medicine research.
+                    Additionally, applicants must be an active PRiSM member or have submitted a membership application. </p>
+
+                <p><strong>Award Application Submission Process </strong></p>
+                <p>The Trainee Travel Grant Award application is part of the abstract submission process. If you indicate that you are a trainee, you will be prompted to complete the award application. Please read the instructions carefully before completing the application and answer all questions.
+                    Inquiries about this application may be addressed to the PRiSM Society’s administrative staff at <a href="mailto:info@prismsports.org">info@prismsports.org</a>.</p>
+
+                <p><strong>Along with all abstract submissions, Trainee Travel Grant Award applications are due July 8, 2024.</strong> All applications will be reviewed and scored by the Scientific Program Committee. Notifications of acceptance will be delivered to submitting authors via email in September 2024.</p>
+
+                <p><strong>Award Selection Criteria </strong></p>
+                <p>A multi-disciplinary panel of PRiSM members will blindly review and score each Trainee Travel Grant Award application with the goal of optimizing the diversity of presenters at the PRiSM Annual Meeting.
+                    Award scoring is based upon the overall merit of the application (as outlined in the abstract guidelines above) and the following applicant-specific criteria used to help identify
+                    underrepresented persons in science and medicine:</p>
+
+                <ul>
+                    <li>Academic degree and/or clinical specialty</li>
+                    <li>Number of years in training</li>
+                    <li>Type of training</li>
+                    <li>Geographic location</li>
+                    <li>Financial need</li>
+                    <li>Race/Ethnicity</li>
+                    <li>Gender</li>
+                    <li>Sexual Orientation</li>
+                </ul>
+
+                <p>Please use <a href="https://diversity.nih.gov/about-us/population-underrepresented" target="_blank">this link</a> to access additional information about underrepresented persons in science and medicine as defined by the National Institutes of Health. </p>
+
+                <div class="text-center"><h1>All submissions are due Monday, July 8, 2024. </h1></div>
 
                 <div class="row mt-4">
                     <div class="text-center ">
                         <label class="alert alert-success text-center glass-content submissionBtn w-700" role="alert">
                             The submission site is now open!
                         </label>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col justify-content-center text-center ">
+                        <button onClick="window.location.href='<?=base_url()?>login'" class="glass-button w-700  btn btn-primary btn-lg align-center" type="button">Please click here to submit / edit  your submission</button>
                     </div>
                 </div>
 
