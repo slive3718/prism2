@@ -172,6 +172,22 @@ class PhpMail
             // Email Subject & Body
             $mail->isHTML(true);
             $mail->Subject = $subject;
+            $cid_references = [];
+
+            if (!empty($embeded_images)) {
+                foreach ($embeded_images as $key => $embeded_image) {
+                    $cid = 'cid:image' . $key; // Unique CID for each image
+                    $mail->AddEmbeddedImage($embeded_image['tmp_name'], $cid, basename($embeded_image['tmp_name'])); // Embed image and associate with CID
+                    $cid_references[$key] = $cid; // Save CID references to use in the email body
+                }
+            }
+
+            // Update the body content to reference the embedded images
+            foreach ($cid_references as $key => $cid) {
+                // Replace image placeholders with the CID references
+                $addContent = str_replace("{image$key}", "cid:$cid", $addContent);
+            }
+
             $mail->Body    = $addContent;
 
             // Attachments

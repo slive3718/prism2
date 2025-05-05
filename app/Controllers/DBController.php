@@ -22,7 +22,7 @@ class DBController extends BaseController
             'admin_abstract_acceptance', 'admin_abstract_comment',
             'author_abstract_acceptance', 'author_organization',
             'author_organization_affiliations', 'author_presentation_upload',
-            'institution', 'users', 'users_profile', 'user_organizations'
+            'institution', 'users', 'users_profile', 'user_organizations', 'institution'
         ];
 
         foreach ($tables as $table) {

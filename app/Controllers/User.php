@@ -871,38 +871,6 @@ class User extends BaseController
             return json_encode(array('status'=>'500', 'message'=>'Transaction failed:','data'=>$e->getMessage()));
         }
     }
-//
-//    public function uploadHeadShot($abstract_id, $author_id){
-//        //  print_r($_FILES);exit;
-//         if ($this->request->getMethod() == 'post') {
-//
-//            $file = $this->request->getFile('headShot');
-//            $file_name = $file->getName();
-//
-//            if ($file->isValid() && ! $file->hasMoved()) {
-//                $newName = $file->getRandomName();
-//                $filePath = "/uploads/abstract/".$abstract_id."/author/".$author_id.'/';
-//                $savePath = FCPATH.$filePath;
-//
-//                if(is_dir(FCPATH.$filePath)) {
-//                if($file->move($savePath, $newName)){
-//                    return array('new_name'=>$newName, 'file_name'=>$file_name,  'savePath'=>$savePath, 'filePath'=>$filePath);
-//                }
-//                }else{
-//                    if(mkdir(FCPATH.$filePath, 0777, true)){
-//                        if($file->move($savePath, $newName)){
-//                            return array('new_name'=>$newName, 'file_name'=>$file_name,  'savePath'=>$savePath, 'filePath'=>$filePath);
-//                        }
-//                    }else{
-//                        return 'error';
-//                    }
-//                }
-//            }else{
-//                return 'invalid file';
-//            }
-//        }
-//
-//    }
 
     public function update_paper_authors(){
         $post = $this->request->getPost();
@@ -911,8 +879,6 @@ class User extends BaseController
         $PaperAuthorsModel = new PaperAuthorsModel();
         $LogsModel = new LogsModel();
 
-        $sendToId = array();
-//        print_r($post['presenting_authors']);exit;
         try {
             // Begin transaction
             $PaperAuthorsModel->db->transBegin();
@@ -943,33 +909,9 @@ class User extends BaseController
                     }
                 }
             }
-
-            // Update Senior Author
-//            if (isset($post['senior_author_id']) && !empty($post['senior_author_id'])) {
-//                $PaperAuthorsModel
-//                    ->set('is_senior_author', 'Yes')
-//                    ->set('update_date_time', date('Y-m-d H:i:s'))
-//                    ->where('author_id', $post['senior_author_id'])
-//                    ->where('paper_id', $post['paper_id'])
-//                    ->update();
-//            }
-
-
             // Update correspondents
             if (isset($post['selectedCorrespondents']) && !empty($post['selectedCorrespondents'])) {
                 foreach (json_decode($post['selectedCorrespondents']) as $selectedCorrespondent) {
-//                    $logs = $LogsModel
-//                        ->where('ref_1', $selectedCorrespondent)
-//                        ->where('user_id', session('user_id'))
-//                        ->where('context', 'copyright')
-//                        ->where('action', 'email')
-//                        ->where('message', 'sent')
-//                        ->findAll();
-//
-////                    print_r($selectedCorrespondent);exit;
-//                    if (empty($logs)) {
-//                        $sendToId[] = $selectedCorrespondent;
-//                    }
 
                     $PaperAuthorsModel
                         ->set('is_correspondent', 'Yes')
@@ -983,18 +925,6 @@ class User extends BaseController
             // Update presenting authors
             if (!empty($post['presenting_authors'])) {
                 foreach (json_decode($post['presenting_authors']) as $presenting_author) {
-//                    print_r($presenting_author);exit;
-//                    $logs = $LogsModel
-//                        ->where('ref_1', $presenting_author)
-//                        ->where('user_id', session('user_id'))
-//                        ->where('context', 'copyright')
-//                        ->where('action', 'email')
-//                        ->where('message', 'sent')
-//                        ->findAll();
-////
-//                    if (empty($logs)) {
-//                        $sendToId[] = $presenting_author;
-//                    }
 
                     $PaperAuthorsModel
                         ->set('is_presenting_author', 'Yes')
@@ -1017,16 +947,7 @@ class User extends BaseController
                 $PaperAuthorsModel->db->transRollback();
                 throw new \Exception('Transaction status is false');
             } else {
-                // Commit transaction
-//                $email_error = 0;
                 $PaperAuthorsModel->db->transCommit();
-//                $sendToId = array_unique($sendToId);
-//                foreach ($sendToId as $id){
-//                    $emailResult = $this->send_author_email($id, 12, 'copyright');
-//                    if($emailResult == 'success'){
-//                        $email_error++;
-//                    }
-//                }
                 return json_encode(array('status' => 200, 'message' => 'Success', 'data' => ''));
 
             }
@@ -1038,17 +959,6 @@ class User extends BaseController
         }
     }
 
-
-//
-//    public function add_new_institution(){
-//        $result = $this->api->post("user/add_new_institution/{$this->event_uri}", $_POST);
-//        if(!$result->status){
-//            return (new ErrorHandler($result->data))->errorPage();
-//        }
-//        echo (json_encode(($result)));exit;
-//    }
-//
-//
     public function remove_paper_author() {
         $post = $this->request->getPost();
         $RemovedPaperAuthorModel = new RemovedPaperAuthorModel();
