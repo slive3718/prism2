@@ -34,12 +34,6 @@
                 </li>
                 <?php endif;?>
 
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <button type="button" id="opensupport" class="btn btn-outline-light">SUPPORT <i class="fa-solid fa-headset"></i></button>
-                    </a>
-                </li>
-
                 <li class="nav-item mt-2 me-5">
                     <div class="dropdown ">
                         <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,6 +57,11 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <button type="button" id="opensupport" class="btn btn-outline-light">SUPPORT <i class="fa-solid fa-headset"></i></button>
+                    </a>
+                </li>
 
                 <?php if(session('user_id')): ?>
                 <li class="nav-item mt-2 me-5">

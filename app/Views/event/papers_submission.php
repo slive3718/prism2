@@ -91,7 +91,7 @@
 <!--                </div>-->
 
                 <div class="mt-4 primary_topic">
-                    <h5>Primary Topic (please select 1)</h5>
+                    <h5 class="fw-bolder">Primary Topic (please select 1)</h5>
                     <?php if (isset($abstract_topics)): ?>
                         <?php foreach($abstract_topics as $topics): ?>
                             <div class="form-check">
@@ -110,7 +110,7 @@
                 </div>
 
                 <div class="mt-4 secondary_topic">
-                    <h5>Secondary Topic (please select 1)</h5>
+                    <h5 class="fw-bolder">Secondary Topic (please select 1)</h5>
                     <?php if (isset($abstract_topics)): ?>
                         <?php foreach($abstract_topics as $topics): ?>
                             <div class="form-check">
