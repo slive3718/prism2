@@ -37,21 +37,21 @@
                 <!-- ##########   Question 1: Previous Presentation ############### -->
 
 
-<!--                <div class="row previous-presentation">-->
-<!--                    <div class="col mt-4">-->
-<!--                        <div id="previous-presentation-container">-->
-<!--                            <h5 class="title">-->
-<!--                                <span class="text-danger">*</span>-->
-<!--                                Previous Presentation-->
-<!--                            </h5>-->
-<!--                            <p>Was this paper previously presented at an SRS IMAST or Annual Meeting?</p>-->
-<!--                            <input type="radio" name="previous_presentation" id="previous_presentation_yes" value="Yes" class="form-input" --><?php //=(!empty($paper) && $paper['previous_presentation'] == "Yes" ? 'checked' : '')?><!-->-->
-<!--                            <label for="previous_presentation_yes"> Yes, this paper has previously been presented at SRS IMAST or Annual Meeting </label> <br>-->
-<!--                            <input type="radio" name="previous_presentation" id="previous_presentation_no" value="No" class="form-input" --><?php //=(!empty($paper) && $paper['previous_presentation'] == "No" ? 'checked' : '')?><!-->-->
-<!--                            <label for="previous_presentation_no"> No, this paper has not been previously presented at SRS IMAST or Annual Meeting </label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+<!--                <div class="row previous-presentation">
+                    <div class="col mt-4">
+                        <div id="previous-presentation-container">
+                            <h5 class="title">
+                                <span class="text-danger">*</span>
+                                Previous Presentation
+                            </h5>
+                            <p>Was this paper previously presented at an SRS IMAST or Annual Meeting?</p>
+                            <input type="radio" name="previous_presentation" id="previous_presentation_yes" value="Yes" class="form-input" <?php /*=(!empty($paper) && $paper['previous_presentation'] == "Yes" ? 'checked' : '')*/?>>
+                            <label for="previous_presentation_yes"> Yes, this paper has previously been presented at SRS IMAST or Annual Meeting </label> <br>
+                            <input type="radio" name="previous_presentation" id="previous_presentation_no" value="No" class="form-input" <?php /*=(!empty($paper) && $paper['previous_presentation'] == "No" ? 'checked' : '')*/?>>
+                            <label for="previous_presentation_no"> No, this paper has not been previously presented at SRS IMAST or Annual Meeting </label>
+                        </div>
+                    </div>
+                </div>-->
 
                 <!-- ##########   Question 2: Basic Science Proposal Format ############### -->
                 <div class="row basic-science-format">
