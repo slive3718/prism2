@@ -295,107 +295,127 @@ $(function(){
 
 
 //
-    $('#savePaperAuthors').on('click', function(){
+    $('#savePaperAuthors').on('click', function(e) {
+        e.preventDefault(); // Prevent default form submission
 
-        let selectedCorrespondents = $('.markedCorrespondent:checked').map(function() {
+        // Get form and prepare FormData
+        const authorAdditionalInfoForm = document.getElementById('author_additional_info_form');
+        const formData = new FormData(authorAdditionalInfoForm);
+
+        // Get author data
+        const selectedCorrespondents = $('.markedCorrespondent:checked').map(function() {
             return $(this).attr('author-id');
         }).get();
 
-        let presenting_authors = $('.presentingAuthor:checked').map(function() {
+        const presentingAuthors = $('.presentingAuthor:checked').map(function() {
             return $(this).attr('author-id');
         }).get();
 
-        let author_orders = $('.author_order').map(function() {
+        const authorOrders = $('.author_order').map(function() {
             return $(this).attr('author_id');
         }).get();
 
-        let senior_author_id = $("input[name='senior_author']:checked").closest(".senior_author").attr('author-id');
-        let author_q_1 = $("input[name='author_q_1']:checked").val();
-        let author_q_2 = $("input[name='author_q_2']:checked").val();
-
-        if (!senior_author_id) {
-            toastr.error("Please select Senior Author.");
+        // Validate required fields
+        if (authorOrders.length === 0) {
+            toastr.error('Please add at least one author');
             return false;
         }
 
-        if (!author_q_1 ||  !author_q_2) {
-            toastr.error("Please answer all required questions.");
+        if (presentingAuthors.length === 0) {
+            toastr.error('Please select a presenting author');
             return false;
         }
 
-        if ($('.tdCompleteStatus[status="0"]').length > 0) {
-            swal.fire({
-                title: 'Info',
-                icon: 'info',
-                text: 'Please complete all author information before saving.'
+        if (selectedCorrespondents.length === 0) {
+            toastr.error('Please select at least one correspondent');
+            return false;
+        }
+
+        // Check if any author information is incomplete
+        const incompleteAuthors = $('.tdCompleteStatus[status="0"]').length;
+        if (incompleteAuthors > 0) {
+            Swal.fire({
+                title: 'Incomplete Information',
+                text: 'Please complete all author details before saving',
+                icon: 'warning'
             });
             return false;
         }
 
-        if(author_orders.length !== 0 && presenting_authors.length !== 0) {
+        // Add additional data to FormData
+        formData.append('presenting_authors', JSON.stringify(presentingAuthors));
+        formData.append('selectedCorrespondents', JSON.stringify(selectedCorrespondents));
+        formData.append('author_orders', JSON.stringify(authorOrders));
+        formData.append('paper_id', paper_id);
 
-            $.ajax({
-                url: base_url + '/user/update_paper_authors',
-                headers: {'X-Requested-With': 'XMLHttpRequest'},
-                data: {
-                    'selectedCorrespondents': selectedCorrespondents,
-                    'author_orders': author_orders,
-                    'presenting_authors': presenting_authors,
-                    'senior_author_id' :senior_author_id,
-                    'paper_id': paper_id,
-                    'author_q_1' : $('input[name="author_q_1"]:checked').val(),
-                    'author_q_2' : $('input[name="author_q_2"]:checked').val()
+        // Validate FormData isn't empty
+        let formDataEmpty = true;
+        for (let value of formData.values()) {
+            if (value) {
+                formDataEmpty = false;
+                break;
+            }
+        }
 
-                },
-                method: "POST",
-                dataType: "json",
-                success: function (response, status) {
-                    if (response.status == "200") {
+        if (formDataEmpty) {
+            toastr.error('No data to submit. Please fill out the form.');
+            return false;
+        }
 
+        // Show loading state
+        const $saveBtn = $(this);
+        const originalBtnText = $saveBtn.html();
+        $saveBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Saving...');
 
-                        if((previousPage === 'finalize_paper' || previousPage === 'submission_menu') && previousUrl) {
-                            return window.location.href = previousUrl
-                        }
-
-                        if(basic_science_format_status === '1')
-                            window.location.href = base_url+'/user/level_of_evidence/'+paper_id;
-                        else
-                            window.location.href = base_url+'/user/presentation_upload/'+paper_id;
-
-                        // $('#authorResultModal').modal('hide');
-                        // swal.fire({
-                        //     title:"Updated",
-                        //     text: "Author(s) Saved",
-                        //     type: "success",
-                        //     icon: "success",
-                        //     confirmButtonText: 'Ok, Next step',
-                        // }).then((result)=> {
-                        //     if(result.isConfirmed){
-                        //
-                        //     }
-                        // });
-                    }
-                    else if(response.status == 500){
-                        Swal.fire(
-                            'info',
-                            response.message,
-                            'warning'
-                        )
-                    }
-                    else{
-                        Swal.fire(
-                            'Sorry',
-                            'Something went wrong, please contact administrator',
-                            'warning'
-                        )
-                        $('#authorResultModal').modal('hide');
-                    }
+        // Make AJAX request
+        $.ajax({
+            url: base_url + '/user/update_paper_authors',
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(response) {
+                if (!response) {
+                    throw new Error('Empty response from server');
                 }
-            });
-        }else{
-            toastr.warning('Author correspondent or Presenting author cannot be empty')
-        }
-    })
+
+                if (response.status === 200) {
+                    // Successful save
+                    toastr.success(response.message || 'Authors saved successfully');
+
+                    // Handle redirect if coming from specific pages
+                    if ((previousPage === 'finalize_paper' || previousPage === 'submission_menu') && previousUrl) {
+                        window.location.href = previousUrl;
+                        return;
+                    }
+
+                    window.location.href = base_url + '/user/presentation_upload/' + paper_id;
+
+                } else if (response.status === 500) {
+                    Swal.fire('Error', response.message || 'Server error occurred', 'error');
+                } else {
+                    Swal.fire('Error', response.message || 'Something went wrong', 'error');
+                }
+            },
+            error: function(xhr, status, error) {
+                let errorMessage = 'An error occurred while saving authors';
+
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                } else if (xhr.statusText) {
+                    errorMessage = xhr.statusText;
+                }
+
+                toastr.error(errorMessage);
+                console.error('AJAX Error:', error);
+            },
+            complete: function() {
+                // Restore button state
+                $saveBtn.prop('disabled', false).html(originalBtnText);
+            }
+        });
+    });
 
 
     $('.authorList').on('click','.moveUp', function(){
@@ -682,7 +702,7 @@ function getPaperAuthors(paper_id = null) {
     $.post(`${base_url}/user/get_paper_authors`, { paper_id }, function(response) {
         $('.authorList').html('');
 
-        $.each(response.data, function(index, author) {
+        $.each(response.data, async function(index, author) {
             console.log(author)
             let completeStatus = checkCompleteStatus(author);
             let presenting = author.is_presenting_author === 'Yes' ? 'checked' : '';
@@ -693,7 +713,15 @@ function getPaperAuthors(paper_id = null) {
             let emailed = getEmailStatus(author);
             let actionButton = getActionButton(author, emailed);
 
-            $('.authorList').append(getAuthorRow(index, author, presenting, senior_author, correspondent, completeStatus, copyrightStatus, emailed, actionButton));
+            $('.authorList').append(await getAuthorRow(index, author, presenting, senior_author, correspondent, completeStatus, copyrightStatus, emailed, actionButton));
+            $('.presentingAuthor').each(function(){
+                if($(this).prop('checked')){
+                    let presentingAuthorFullName = author.name +' '+ author.surname
+                    $('.presentingAuthorName').html('<span class="text-primary presentingAuthorNameValue">'+presentingAuthorFullName+'</span>')
+                    $('.cvUploadBtn').attr('presenting_author', presentingAuthorFullName);
+                    $('.presentingAuthorSubInfo').show();
+                }
+            })
         });
     }, 'json');
 }
@@ -773,7 +801,7 @@ function getActionButton(author, emailed) {
 }
 
 
-function getAuthorRow(index, author, presenting, senior_author, correspondent, completeStatus, copyrightStatus, emailed, actionButton) {
+async function getAuthorRow(index, author, presenting, senior_author, correspondent, completeStatus, copyrightStatus, emailed, actionButton) {
     return `
         <tr class="author_order" author_id="${author.author_id}" order="${author.author_order}" name="${author.name}" paper_authors_id="${author.id}" paper_id="${author.paper_id}">
             <td><span class="order_num">${index + 1}.</span></td>
@@ -783,13 +811,13 @@ function getAuthorRow(index, author, presenting, senior_author, correspondent, c
                 <label for="correspondent_${author.author_id}"> Correspondent</label>
             </td>
             <td class="text-nowrap">
-                <input id="presentingAuthor_${author.author_id}" type="checkbox" class="presentingAuthor" author-id="${author.author_id}" ${presenting}>
-                <label for="presentingAuthor_${author.author_id}"> Presenting Author</label>
+                <input name="presentingAuthor" id="presentingAuthor_${author.author_id}" type="radio" class="presentingAuthor" author-id="${author.author_id}" ${presenting} author_name="${author.name}"  author_surname="${author.surname}">
+                <label for="presentingAuthor_${author.author_id}"> Lead Presenter</label>
             </td>
-            <td class="text-nowrap">
+           <!-- <td class="text-nowrap">
                 <input id="senior_author${author.author_id}" type="radio" class="senior_author" name="senior_author" author-id="${author.author_id}" ${senior_author}>
                 <label for="senior_author${author.author_id}"> Senior Author</label>
-            </td>
+            </td> -->
             <td class="text-nowrap">
                 <a class="btn btn-sm btn-primary text-white moveUp"><i class="fa-solid fa-arrow-up"></i></a>
             </td>
@@ -812,12 +840,12 @@ function getAuthorRow(index, author, presenting, senior_author, correspondent, c
                    <i class="fa-solid fa-user-xmark"></i>
                 </a>
             </td>
-            <td class="tdCompleteStatus" status="${completeStatus ? 1 : 0}">
+            <!-- <td class="tdCompleteStatus" status="${completeStatus ? 1 : 0}">
                 ${completeStatus ? `<span class="text-success small">Completed</span>` : `<span class="text-danger small">Incomplete</span>`}
             </td>
             <td style="text-align:center" class="copyrightStatus text-wrap">${copyrightStatus}</td>
             <td class="text-nowrap"><span class="small">${emailed}</span></td>
-            <td class="text-nowrap">${actionButton}</td>
+            <td class="text-nowrap">${actionButton}</td> -->
         </tr>`;
 }
 
@@ -946,4 +974,104 @@ function addSearchedAuthor(paper_id, selected_user_id){
         }
     });
 }
+
+function uploadCV($this) {
+    let presenting_author = $this.attr('presenting_author');
+    let fileInput = $('input[name="cv_upload"]')[0];
+
+    if (!fileInput.files.length) {
+        toastr.error('Please choose a file to upload!');
+        return false;
+    }
+
+    let file = fileInput.files[0];
+    let fileName = file.name;
+
+    if (!presenting_author) {
+        toastr.error('Please Select Presenting Author First!');
+        return false;
+    }
+
+    let extension = file.name.split('.').pop().toLowerCase();
+    let valid_upload_filter = ['pdf'];
+
+    if ($.inArray(extension, valid_upload_filter) === -1) {
+        Swal.fire({
+            title: 'Invalid file',
+            text: 'CV must be a PDF file',
+            icon: 'info'
+        });
+        return false;
+    }
+
+    presenting_author = presenting_author.replace(/ /g, '_');
+    let newFileName = presenting_author + '_' + fileName;
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Your file will be renamed to " + newFileName,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, upload it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let abstract_id = $this.attr('abstract_id');
+            let formUpload = new FormData();
+            formUpload.append('cv_upload', file);
+            formUpload.append('abstract_id', abstract_id);
+            formUpload.append('upload_save_name', newFileName);
+
+            $.ajax({
+                url: base_url + '/user/cv_upload',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                data: formUpload,
+                method: "POST",
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'Please Wait!',
+                        html: 'Uploading...',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.status === "success" && response.data && response.data.cv_file_path) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'CV uploaded successfully',
+                            icon: 'success'
+                        });
+
+                        $('#cv_preview')
+                            .html(`<a href="${response.data.cv_file_path}" target="_blank">${newFileName}</a>`)
+                            .attr('has_val', '1');
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Something went wrong uploading the CV. Please contact administrator.',
+                            icon: 'error'
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Server error occurred. Please try again later.',
+                        icon: 'error'
+                    });
+                }
+            });
+        }
+    });
+
+    return false;
+}
+
 

@@ -184,12 +184,12 @@ class Account extends BaseController
 
             $message = 'Hi '.ucfirst($user['name']) .' '.ucfirst($user['surname']).', <br> We received a request to reset the password of your account. <br><br>
                     Your new password is: '.$random_password.'<br> <br> 
-                    You can update your password by logging into submission <a href="https://ap.owpm2.com"></a>https://ap.owpm2.com, and on the top corner menu, click on settings, then password settings. <br>
+                    You can update your password by logging into submission by clicking<a href="'.base_url().'login"> here</a>, and on the top corner menu, click on settings, then password settings. <br>
                     <p> If you  need further assistance, please contact <a href="support@owpm2.com">support@owpm2.com</a></p>';
 
-            $from['name']="Asia Pacific 2026";
-            $from['email'] = "AP@owpm2.com";
-            if($mail->send($from, [$user['email']],  'AP26 Password Reset', $message, 'Password', 'Support')){
+            $from['name'] = env('MAIL_FROM');
+            $from['email'] = env('MAIL_FROM_ADDRESS');
+            if($mail->send($from, [$user['email']],  'PRiSM Password Reset', $message)){
                 $this->response->setStatusCode(200, 'success');
                 return (json_encode(['status'=> 200, 'message'=>"Password sent to email", 'data'=>'']));
             }

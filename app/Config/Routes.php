@@ -317,7 +317,8 @@ $routes->group('',['filter' => 'authGuard'], function ($routes)
     $routes->post('user/assign_abstract_author', 'User::assign_abstract_author');
     $routes->post('user/add_author_ajax', 'User::add_author_ajax/$1');
     $routes->get('user/update_author_details', 'User::update_author_details');
-    $routes->post('user/update_paper_authors', 'User::update_paper_authors/$1');
+    $routes->post('user/update_paper_authors', 'User::update_paper_authors');
+    $routes->post('user/cv_upload', 'User::cv_upload');
     $routes->post('user/get_institution', 'User::get_institution');
     $routes->post('user/resend_disclosure_email', 'User::resend_disclosure_email/$1');
     $routes->post('user/get_author_info', 'User::get_author_info/$1');

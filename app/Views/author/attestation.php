@@ -10,7 +10,7 @@
                     <div class="col-md-12">
                         <p>According to guidelines set forth by the Accreditation Council for Continuing Medical Education (ACCME), should it be determined that a disclosed financial relationship is relevant to the business lines or products of the ineligible company, this conflict must be mitigated prior to the educational activity.</p>
                         <br>
-                        <p>The following speaker/presenter has disclosed a financial relationship that may affect his/her presentations at SRS Asia Pacific 2026. Please fill out the sections below and sign the Presenter Attestation.</p>
+                        <p>The following speaker/presenter has disclosed a financial relationship that may affect his/her presentations at SRS PRiSM 2026. Please fill out the sections below and sign the Presenter Attestation.</p>
 
                         <p>For all presentations presented at the Annual Meeting, I attest that:</p>
 

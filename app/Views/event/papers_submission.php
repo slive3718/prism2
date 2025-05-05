@@ -98,13 +98,13 @@
                             <div class="form-check">
                                 <label class="form-check-label" for="check1">
                                     <input type="checkbox" class="form-check-input" name="primary_topic[]" value="<?= $topics['value'] ?>"
-                                        <?= isset($paper['primary_topic']) && in_array($topics['value'], json_decode($paper['primary_topic'], true) ?: []) ? 'checked' : ''; ?>>
+                                        <?= isset($paper['primary_topic'])  && in_array($topics['value'], json_decode($paper['primary_topic'], true) ?: []) ? 'checked' : ''; ?>>
                                     <?= $topics['name'] ?>
                                 </label>
                             </div>
                         <?php endforeach; ?>
                     <?php endif ?>
-                    <div class="otherPrimaryTopicDiv" style="display: <?= (isset($paper) && in_array(26, json_decode($paper['primary_topic'] ?? []))) ? 'block' : 'none' ?>">
+                    <div class="otherPrimaryTopicDiv" style="display: <?= (isset($paper) && $paper['primary_topic'] && in_array(26, json_decode($paper['primary_topic'] ?? []))) ? 'block' : 'none' ?>">
                         <input type="text" name="other_primary_topic" id="otherPrimaryTopic" value="<?= isset($paper) ? $paper['other_primary_topic'] : '' ?>">
                         <label for="otherPrimaryTopic">Other Primary Topic</label>
                     </div>
@@ -124,7 +124,7 @@
 
                         <?php endforeach; ?>
                     <?php endif ?>
-                    <div class="otherSecondaryTopicDiv" style="display: <?= (isset($paper) && in_array(26, json_decode($paper['secondary_topic'] ?? []))) ? 'block' : 'none' ?>">
+                    <div class="otherSecondaryTopicDiv" style="display:  <?= (isset($paper) && $paper['primary_topic'] && in_array(26, json_decode($paper['primary_topic'] ?? []))) ? 'block' : 'none' ?>">
                         <input type="text" name="other_secondary_topic" id="otherSecondaryTopic" value="<?= isset($paper) ? $paper['other_secondary_topic'] : '' ?>">
                         <label for="otherSecondaryTopic">Other Secondary Topic</label>
                     </div>

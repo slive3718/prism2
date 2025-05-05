@@ -29,7 +29,9 @@ use App\Models\RemovedPaperAuthorModel;
 use App\Models\SiteSettingModel;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
+use http\Env\Response;
 use PhpOffice\PhpWord\Style\Paper;
+use PHPUnit\Util\Json;
 
 
 class User extends BaseController
@@ -99,7 +101,7 @@ class User extends BaseController
          $authorDetailsRequiredFields = [
              'institution_id' => 'Institution',
              'designations' => 'Designations',
-             'signature_signed_date'=> 'Disclosure Signature'
+//             'signature_signed_date'=> 'Disclosure Signature'
          ];
 
 
@@ -327,8 +329,24 @@ class User extends BaseController
             'author_q_1'          => isset($post['author_q_1']) ? trim($post['author_q_1']) : $existingPaper['author_q_1'],
             'author_q_2'          => isset($post['author_q_2']) ? trim($post['author_q_2']) : $existingPaper['author_q_2'],
             'image_upload_finished'  => isset($post['image_upload_finished']) ? trim($post['image_upload_finished']) : $existingPaper['image_upload_finished'],
-        ];
 
+            //other details from disclosure|| author_copyright
+
+            'is_presenting_student'          => isset($post['is_presenting_student']) ? trim($post['is_presenting_student']) : $existingPaper['is_presenting_student'],
+            'is_eligible_grant'              => isset($post['is_eligible_grant']) ? trim($post['is_eligible_grant']) : $existingPaper['is_eligible_grant'],
+            'letter_of_intent'               => isset($post['letter_of_intent']) ? trim($post['letter_of_intent']) : $existingPaper['letter_of_intent'],
+            'explanation_of_contribution'    => isset($post['explanation_of_contribution']) ? trim($post['explanation_of_contribution']) : $existingPaper['explanation_of_contribution'],
+            'specialty_working_toward'       => isset($post['grant_specialty']) ? trim($post['grant_specialty']) : $existingPaper['specialty_working_toward'],
+            'years_of_training'              => isset($post['years_of_training']) ? trim($post['years_of_training']) : $existingPaper['years_of_training'],
+            'type_of_training'               => isset($post['type_of_training']) ? trim(implode(',', $post['type_of_training'])) : $existingPaper['type_of_training'],
+            'grant_race'                     => isset($post['grant_race']) ? trim($post['grant_race']) : $existingPaper['grant_race'],
+            'grant_gender'                   => isset($post['grant_gender']) ? trim($post['grant_gender']) : $existingPaper['grant_gender'],
+            'grant_city'                     => isset($post['grantCity']) ? trim($post['grantCity']) : $existingPaper['grant_city'],
+            'grant_state'                    => isset($post['grantState']) ? trim($post['grantState']) : $existingPaper['grant_state'],
+            'grant_country'                  => isset($post['grantCountry']) ? trim($post['grantCountry']) : $existingPaper['grant_country'],
+            'grant_sexual_orientation'       => isset($post['grant_sexual_orientation']) ? trim($post['grant_sexual_orientation']) : $existingPaper['grant_sexual_orientation'],
+            'grant_other_relevant_details'   => isset($post['grant_other_relevant_details']) ? trim($post['grant_other_relevant_details']) : $existingPaper['grant_other_relevant_details'],
+        ];
 
         // Remove fields that haven't changed
         $update_array = array_diff_assoc($update_array, $existingPaper);
@@ -915,7 +933,7 @@ class User extends BaseController
 
             // Update author orders
             if (isset($post['author_orders'])) {
-                foreach ($post['author_orders'] as $index => $author_order) {
+                foreach (json_decode($post['author_orders']) as $index => $author_order) {
                     if ($author_order !== '') {
                         $PaperAuthorsModel
                             ->set('author_order', $index + 1)
@@ -927,19 +945,19 @@ class User extends BaseController
             }
 
             // Update Senior Author
-            if (isset($post['senior_author_id']) && !empty($post['senior_author_id'])) {
-                $PaperAuthorsModel
-                    ->set('is_senior_author', 'Yes')
-                    ->set('update_date_time', date('Y-m-d H:i:s'))
-                    ->where('author_id', $post['senior_author_id'])
-                    ->where('paper_id', $post['paper_id'])
-                    ->update();
-            }
+//            if (isset($post['senior_author_id']) && !empty($post['senior_author_id'])) {
+//                $PaperAuthorsModel
+//                    ->set('is_senior_author', 'Yes')
+//                    ->set('update_date_time', date('Y-m-d H:i:s'))
+//                    ->where('author_id', $post['senior_author_id'])
+//                    ->where('paper_id', $post['paper_id'])
+//                    ->update();
+//            }
 
 
             // Update correspondents
             if (isset($post['selectedCorrespondents']) && !empty($post['selectedCorrespondents'])) {
-                foreach ($post['selectedCorrespondents'] as $selectedCorrespondent) {
+                foreach (json_decode($post['selectedCorrespondents']) as $selectedCorrespondent) {
 //                    $logs = $LogsModel
 //                        ->where('ref_1', $selectedCorrespondent)
 //                        ->where('user_id', session('user_id'))
@@ -964,7 +982,7 @@ class User extends BaseController
 
             // Update presenting authors
             if (!empty($post['presenting_authors'])) {
-                foreach ($post['presenting_authors'] as $presenting_author) {
+                foreach (json_decode($post['presenting_authors']) as $presenting_author) {
 //                    print_r($presenting_author);exit;
 //                    $logs = $LogsModel
 //                        ->where('ref_1', $presenting_author)
@@ -1009,14 +1027,14 @@ class User extends BaseController
 //                        $email_error++;
 //                    }
 //                }
-                return json_encode(array('status' => '200', 'message' => 'Success', 'data' => ''));
+                return json_encode(array('status' => 200, 'message' => 'Success', 'data' => ''));
 
             }
         } catch (\Exception $e) {
             // Rollback transaction and log the error
             $PaperAuthorsModel->db->transRollback();
             error_log('Transaction failed: ' . $e->getMessage());
-            return json_encode(array('status' => '500', 'message' => 'Transaction failed: ' . $e->getMessage(), 'data' => $e->getMessage()));
+            return json_encode(array('status' => 500, 'message' => 'Transaction failed: ' . $e->getMessage(), 'data' => $e->getMessage()));
         }
     }
 
@@ -1075,7 +1093,7 @@ class User extends BaseController
             $email_body = str_replace('##SUBMITTER_NAME##', ucFirst($papers->submitter_name), $email_body);
             $email_body = str_replace('##SUBMITTER_SURNAME##', ucFirst($papers->submitter_surname), $email_body);
 
-            $from = ['name'=>'Asia Pacific 2026', 'email'=>'ap@owpm2.com'];
+            $from = ['name'=>env('MAIL_FROM'), 'email'=>env('MAIL_FROM_ADDRESS')];
             $addTo = $paperAuthors['email'];
             $subject = $MailTemplates['email_subject'];
             $addContent = $email_body;
@@ -1153,7 +1171,7 @@ class User extends BaseController
 
             $email_body = $MailTemplates['email_body'];
 
-            $from = ['name'=>'Asia Pacific 2026', 'email'=>'ap@owpm2.com'];
+            $from = ['name'=>env('MAIL_FROM'), 'email'=>env('MAIL_FROM_ADDRESS')];
             $addTo = $user['email'];
 
             $email_header = '<img id="main-banner" src="https://ap.owpm2.com/main_banner.png" class=" figure-img" alt="Main Banner" style="width: 100% !important;object-fit: cover; mix-blend-mode: multiply;">';
@@ -1247,7 +1265,7 @@ class User extends BaseController
                 $email_logs_array['status'] = 'Success';
                 $emailLogsModel = (new EmailLogsModel())->saveToMailLogs($email_logs_array);
 
-                return 'success';
+                return 1;
             } else {
                 // Email sending failed
                 $email_logs_array['status'] = 'Failed';
@@ -1364,7 +1382,7 @@ class User extends BaseController
                             $email_body
                         );
 
-                        $from = ['name' => 'Asia Pacific 2026', 'email' => 'ap@owpm2.com'];
+                        $from = ['name' => env('MAIL_FROM'), 'email' => env('MAIL_FROM_ADDRESS')];
                         $addTo = $user['email'];
                         $subject = $MailTemplates['email_subject'];
 
@@ -1550,7 +1568,7 @@ class User extends BaseController
         // Validation for Missing Fields
         $authorDetailsRequiredFields = [
             'institution_id' => 'Institution',
-            'signature_signed_date' => 'Disclosure'
+//            'signature_signed_date' => 'Disclosure'
         ];
 
         $paperRequiredFields = [];
@@ -1602,44 +1620,70 @@ class User extends BaseController
     }
 
 
-    public function save_finalize_paper(){
+    public function save_finalize_paper()
+    {
         $post = $this->request->getPost();
+        $paper_id = $post['paper_id'] ?? null;
 
-        // print_r($_POST);exit;
-        $paper_id = $post['paper_id'];
-        $PapersModel = (new PapersModel());
-        $PaperAuthorsModel = (new PaperAuthorsModel());
-        $RemovedPaperAuthorsModel = (new RemovedPaperAuthorModel());
-        $paper_authors = (new PaperAuthorsModel())
-            ->where('paper_id', $post['paper_id'])
-            ->whereNotIn($PaperAuthorsModel->table . '.id', function ($builder) use ($RemovedPaperAuthorsModel) {
-                $builder->select('paper_author_id')->from($RemovedPaperAuthorsModel->table);
-            })
-            ->findAll();
+        if (!$paper_id) {
+            return $this->respondWithError('Paper ID is required.');
+        }
+
+        $PapersModel = new PapersModel();
+        $PaperAuthorsModel = new PaperAuthorsModel();
+        $RemovedPaperAuthorsModel = new RemovedPaperAuthorModel();
 
         try {
-            foreach ($paper_authors as $author){
-                if($author['is_correspondent'] == 'Yes') {
+            // Get all valid authors for this paper
+            $paper_authors = $PaperAuthorsModel
+                ->where('paper_id', $paper_id)
+                ->whereNotIn('id', function ($builder) use ($RemovedPaperAuthorsModel) {
+                    $builder->select('paper_author_id')
+                        ->from($RemovedPaperAuthorsModel->table);
+                })
+                ->findAll();
+
+            $email_sent = false;
+
+            foreach ($paper_authors as $author) {
+                if ($author['is_correspondent'] === 'Yes') {
                     $logs = $this->get_author_logs($author['author_id']);
+
                     if (empty($logs)) {
-                        $this->send_confirmation_email($author['author_id'], 1, $paper_id, $post, 'finalized');
+                        $result = $this->send_confirmation_email($author['author_id'], 1, $paper_id, $post, 'finalized');
+                        $email_sent = $email_sent || $result === 1;
                     }
                 }
             }
 
-            if(session('user_id')){
-                $this->send_confirmation_email(session('user_id'), 1, $paper_id, $post, 'finalized');
+            // Also send confirmation to the user (likely the submitter)
+            if (session('user_id')) {
+                $result = $this->send_confirmation_email(session('user_id'), 1, $paper_id, $post, 'finalized');
+                $email_sent = $email_sent || $result === 1;
             }
 
-            $finalize = $PapersModel->set('is_finalized', 1)->where('id', $paper_id)->update();
+            if ($email_sent) {
+                $finalize = $PapersModel->set('is_finalized', 1)->where('id', $paper_id)->update();
 
-            if($finalize){
-                return json_encode(['status' => 200, 'message' => 'success', 'data' => '']);
+                if ($finalize) {
+                    return $this->respondWithSuccess('Paper finalized successfully.');
+                }
             }
-        }catch (\Exception $e){
-            return json_encode(['status' => 500, 'message' => 'error: '. $e->getMessage(), 'data' => '']);
+
+            return $this->respondWithError('No emails were sent or finalization failed.');
+        } catch (\Throwable $e) {
+            return $this->respondWithError('Exception: ' . $e->getMessage(), 500);
         }
-        return json_encode(['status' => 500, 'message' => 'error', 'data' => '']);
+    }
+
+    protected function respondWithSuccess($message, $data = '')
+    {
+        return $this->response->setJSON(['status' => 200, 'message' => $message, 'data' => $data]);
+    }
+
+    protected function respondWithError($message, $status = 500)
+    {
+        return $this->response->setJSON(['status' => $status, 'message' => $message, 'data' => '']);
     }
 
 
@@ -1717,7 +1761,7 @@ class User extends BaseController
         }
 
         $sendMail = new PhpMail();
-        $from = ['email' => 'ap@owpm2.com', 'name' => 'Asia Pacific 2026'];
+        $from = ['email' => env('MAIL_FROM_ADDRESS'), 'name' => env('MAIL_FROM')];
         $subject = 'Support Request From '.$post['fname']." ".$post['lname'];
         $message = "First Name: ".$post['fname']."<br>";
         $message .= "Last Name: ".$post['lname']."<br>";
@@ -2451,7 +2495,7 @@ class User extends BaseController
     function send_panelist_email_copyright($paper_id, $panelistCode){
 
         $sendMail = new PhpMail();
-        $from = ['email' => 'ap@owpm2.com', 'name' => 'Asia Pacific 2026'];
+        $from = ['email' => env('MAIL_FROM_ADDRESS'), 'name' => env('MAIL_FROM')];
 
         $PaperAuthorModel = (new PaperAuthorsModel());
         $PapersModel = (new PapersModel());
@@ -2766,7 +2810,7 @@ class User extends BaseController
                         $PaperTemplates = str_replace('##RECIPIENTS_FULL_NAME##', ucFirst($user['name']) . ' ' . ucFirst($user['surname']), $PaperTemplates);
                         $PaperTemplates = str_replace('##REVIEW_USERNAME##', $user['email'], $PaperTemplates);
                         $PaperTemplates = str_replace('##REVIEW_PASSWORD##', 'Please reset your password in case forgotten. Thank you!', $PaperTemplates);
-                        $from = ['name' => 'Asia Pacific 2026', 'email' => 'ap@owpm2.com'];
+                        $from = ['name' => env('MAIL_FROM'), 'email' => env('MAIL_FROM_ADDRESS')];
                         $addTo = $user['email'];
                         $subject = $MailTemplates['email_subject'];
                         $addContent = $PaperTemplates;
@@ -2815,6 +2859,99 @@ class User extends BaseController
         return true;
     }
 
+    public function cv_upload() {
+        $post = $this->request->getPost();
+        $post['user_id'] = session('user_id');
+        $PaperModel = new PapersModel();
+
+        if ($this->request->getMethod() == 'post') {
+
+            if(!$post['upload_save_name']){
+                $response = [
+                    'status' => 'error',
+                    'message' => 'Missing file name.'
+                ];
+            }
+            // Retrieve the uploaded file from the AJAX request data
+            $file = $this->request->getFile('cv_upload', [
+                'max_size' => '10000', // Max file size in kilobytes
+                'ext_in' => 'pdf', // Allowed file extensions (comma-separated list)
+            ]);
+
+            $file_name = $post['upload_save_name'];
+
+            // Check if the file is valid and has not been moved yet
+            if ($file->isValid() && !$file->hasMoved()) {
+                // Generate a new name for the file
+                $newName = $file->getRandomName();
+
+                // Set the file upload directory to '/uploads/cv/'
+                $filePath = "/uploads/cv/";
+                $savePath = FCPATH.$filePath;
+                $fileUrl = base_url($filePath.$newName);
+
+
+                // Check if the upload directory exists
+                if (is_dir(FCPATH.$filePath) || mkdir(FCPATH.$filePath, 0777, true)) {
+                    if ($file->move($savePath, $newName)) {
+                        // Prepare data for database
+
+                        $cvData = [
+                            'cv_name' => $file_name,
+                            'cv_rand_name' => $newName,
+                            'cv_folder' => $filePath,
+                            'cv_file_path' => $fileUrl,
+                        ];
+                        // Save to database
+                        try {
+                            $result = $PaperModel->set($cvData)->where('id', $post['abstract_id'])->update();
+
+                            if ($result) {
+                                $response = [
+                                    'status' => 'success',
+                                    'message' => 'CV uploaded successfully',
+                                    'data' => $cvData
+                                ];
+                            } else {
+                                $response = [
+                                    'status' => 'error',
+                                    'message' => 'Failed to save CV information to database'
+                                ];
+                            }
+                        } catch (\Exception $e) {
+                            $response = [
+                                'status' => 'error',
+                                'message' => 'Database error: ' . $e->getMessage()
+                            ];
+                        }
+                    } else {
+                        $response = [
+                            'status' => 'error',
+                            'message' => 'Failed to move uploaded file'
+                        ];
+                    }
+                } else {
+                    $response = [
+                        'status' => 'error',
+                        'message' => 'Failed to create upload directory'
+                    ];
+                }
+            } else {
+                $response = [
+                    'status' => 'invalid',
+                    'message' => 'Invalid file upload'
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 'error',
+                'message' => 'Invalid request method'
+            ];
+        }
+
+        // Return JSON response
+        return $this->response->setJSON($response);
+    }
 
 
     public function testMail(){

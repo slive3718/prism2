@@ -9,7 +9,8 @@
     <div class="container" style="padding-bottom: 200px">
         <?php echo view('event/common/shortcut_link'); ?>
         <div class="card p-lg-5 p-md-2 p-sm-1 p-xs-1 p-3 shadow">
-            <p>You may upload one associated file or graphic in jpeg format here. If you have no image to include then 'Continue' to next page.</p>
+            <p>You may upload two associated jpg files that are 750 pixels wide. If you have no images to include then proceed to option two.
+                Image Requirements: JPEG only and 750 pixels wide.</p>
            <div class="card p-3">
                 <p class="fw-bold">Current uploaded files</p>
                 <table class="table table-striped table-bordered table-hover uploadsTable">
@@ -35,15 +36,15 @@
                 <button class="btn btn-primary btn-sm uploadFileBtn">Upload File</button> <br><br>
 
 
-                <div class="text-center m-auto p-4" style="width: 600px; border:4px dotted black">
-                    Total Abstract Body Count: <span id="abstract_body_count">0 characters</span> <br>
-                    Image Caption Body Count: <span id="image_caption_body_count" >0 characters</span><br>
-                    Limit: 2500
-                </div>
+<!--                <div class="text-center m-auto p-4" style="width: 600px; border:4px dotted black">-->
+<!--                    Total Abstract Body Count: <span id="abstract_body_count">0 characters</span> <br>-->
+<!--                    Image Caption Body Count: <span id="image_caption_body_count" >0 characters</span><br>-->
+<!--                    Limit: 2500-->
+<!--                </div>-->
 
-                <label for="image_caption" class="fw-bolder"> Image Caption</label>
-                <textarea name="image_caption" id="image_caption" class="form-control countWords" rows="4" placeholder="Please type here for the caption..."><?= !empty($paper) && $paper['image_caption'] ? $paper['image_caption']: ''?></textarea>
-                <label class="counted_words fw-bolder"></label>
+<!--                <label for="image_caption" class="fw-bolder"> Image Caption</label>-->
+<!--                <textarea name="image_caption" id="image_caption" class="form-control countWords" rows="4" placeholder="Please type here for the caption...">--><?php //= !empty($paper) && $paper['image_caption'] ? $paper['image_caption']: ''?><!--</textarea>-->
+<!--                <label class="counted_words fw-bolder"></label>-->
 
                 <p class="mt-4">Step 3. Finished Uploading, continue.</p>
                 <button class="btn btn-success btn-sm presentationContinueBtn">Continue</button>
