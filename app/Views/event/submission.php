@@ -76,29 +76,29 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-2">
-                                    <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapse_copyright_<?=$paper->id?>" role="button" aria-expanded="false" aria-controls="collapse_copyright_<?=$paper->id?>">
+                                <!--<div class="mt-2">
+                                    <a class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapse_copyright_<?php /*=$paper->id*/?>" role="button" aria-expanded="false" aria-controls="collapse_copyright_<?php /*=$paper->id*/?>">
                                         + View Disclosures
                                     </a>
-                                    <?php foreach ($paper->authors as $author) {
+                                    <?php /*foreach ($paper->authors as $author) {
                                         // Check if the value of 'is_copyright_agreement_accepted' is 1
                                         if (!empty($author['signature_signed_date'])) {
                                             // Increment counter
                                             $count++;
                                         }
-                                    } ?>
-                                    <span class="float-end">Disclosure Status:  <?=($count == count($paper->authors))?'<span class="text-success">Complete</span>':'<span class="text-danger">Incomplete</span>'?>  <?=$count?>/ <?=count($paper->authors)?></span>
+                                    } */?>
+                                    <span class="float-end">Disclosure Status:  <?php /*=($count == count($paper->authors))?'<span class="text-success">Complete</span>':'<span class="text-danger">Incomplete</span>'*/?>  <?php /*=$count*/?>/ <?php /*=count($paper->authors)*/?></span>
 
-                                    <div class="collapse mt-2" id="collapse_copyright_<?=$paper->id?>">
-                                        <?php if($paper->authors):
-                                            foreach($paper->authors as $author):?>
-                                                <?=Ucfirst($author['name']).' '.Ucfirst($author['surname'])?> : <?= (!empty($author['signature_signed_date']))?'<span class="text-success">Completed</span>':'<span class="text-danger">Incomplete</span>'?> <br>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
+                                    <div class="collapse mt-2" id="collapse_copyright_<?php /*=$paper->id*/?>">
+                                        <?php /*if($paper->authors):
+                                            foreach($paper->authors as $author):*/?>
+                                                <?php /*=Ucfirst($author['name']).' '.Ucfirst($author['surname'])*/?> : <?php /*= (!empty($author['signature_signed_date']))?'<span class="text-success">Completed</span>':'<span class="text-danger">Incomplete</span>'*/?> <br>
+                                            <?php /*endforeach; */?>
+                                        <?php /*else: */?>
                                             <span> No Data.</span>
-                                        <?php endif ?>
+                                        <?php /*endif */?>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     <?php endif;
