@@ -61,7 +61,6 @@
                                 <span class="text-danger">*</span>
                                 This Abstract is:
                             </h5>
-                            <p>Is your proposal in a Basic Science format?</p>
                             <input type="radio" name="basic_science_format" id="basic_science_format_yes" value="Yes" <?=(!empty($paper) && $paper['basic_science_format'] == "Yes" ? 'checked' : '')?>>
                             <label for="basic_science_format_yes"> Quantitative</label> <br>
                             <input type="radio" name="basic_science_format" id="basic_science_format_no" value="No" <?=(!empty($paper) && $paper['basic_science_format'] == "No" ? 'checked' : '')?>>
