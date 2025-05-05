@@ -162,7 +162,7 @@
                             <p>Abstract titles must be written in ALL CAPITAL letters.</p>
                             <label for="abstract_title"> <span class="text-success">CORRECT </span> - THIS IS THE TITLE OF MY ABSTRACT</label>
                             <textarea name="abstract_title" id="abstract_title" class="form-control countWords mt-2" rows="1" placeholder="Abstract Title" ><?=(!empty($paper) ? $paper['title'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                                 Background
                             </label>
                             <textarea name="study_design" id="study_design" class="form-control countWords" rows="4" placeholder="Describe the study design..."><?=(!empty($paper) ? $paper['study_design'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                                 Hypothesis
                             </label>
                             <textarea name="hypothesis" id="hypothesis" class="form-control countWords" rows="4" placeholder="Enter your hypothesis..."><?=(!empty($paper) ? $paper['hypothesis'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -204,7 +204,7 @@
                                 Methods
                             </label>
                             <textarea name="methods" id="methods" class="form-control countWords" rows="4" placeholder="Explain the methods used..."><?=(!empty($paper) ? $paper['methods'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                                 Results
                             </label>
                             <textarea name="results" id="results" class="form-control countWords" rows="4" placeholder="Summarize the results..."><?=(!empty($paper) ? $paper['results'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                                 Conclusions
                             </label>
                             <textarea name="conclusions" id="conclusions" class="form-control countWords" rows="4" placeholder="Provide the conclusions..."><?=(!empty($paper) ? $paper['conclusions'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -246,7 +246,7 @@
                                 Reference
                             </label>
                             <textarea name="introduction" id="introduction" class="form-control countWords" rows="4" placeholder="Write the introduction..."><?=(!empty($paper) ? $paper['introduction'] : '')?></textarea>
-                            <label class="counted_words fw-bolder"></label>
+                             <!-- <label class="counted_words fw-bolder"></label> -->
                         </div>
                     </div>
                 </div>
@@ -259,7 +259,7 @@
 <!--                                Additional Notes-->
 <!--                            </label>-->
 <!--                            <textarea name="additional_notes" id="additional_notes" class="form-control" rows="4" placeholder="Enter any additional notes...">--><?php //=(!empty($paper) ? $paper['additional_notes'] : '')?><!--</textarea>-->
-<!--                            <label class="counted_words fw-bolder"></label>-->
+<!--                            <label class="counted_words fw-bolder"></label> -->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
@@ -275,10 +275,10 @@
 <!--                </div>-->
 
 
-                <div>
+                <!--<div>
                     <label class="title mt-4">Image/Table Caption</label>
                     <p>If you are adding an image Or table to your abstract submission, the caption for this will count to your total 2500 characters. Please add your caption on the upload page you have <span id="remaining_caption_count" class="fw-bolder">0</span>/2500 characters left for your caption.</p>
-                </div>
+                </div>-->
 
                 <div class="mt-4">
                     <h5 class="fw-bold"><required class="text-danger">*</required> Inclusion and Equity Award</h5>
