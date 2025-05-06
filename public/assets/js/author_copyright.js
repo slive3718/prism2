@@ -298,6 +298,36 @@ $(function(){
     $('#savePaperAuthors').on('click', function(e) {
         e.preventDefault(); // Prevent default form submission
 
+        $.validator.addMethod("trainingRequired", function(value, element) {
+            const anyChecked = $("input[name='type_of_training[]']:checked").length > 0;
+            const otherFilled = $.trim($("input[name='other_training']").val()) !== "";
+            return anyChecked || otherFilled;
+        }, "Please select a training type or fill out 'Other Training'.");
+
+
+        let author_additional_info_form =   $('#author_additional_info_form')
+        author_additional_info_form.validate({
+            rules: {
+                is_presenting_student: "required",
+                is_eligible_grant: "required",
+                letter_of_intent: "required",
+                explanation_of_contribution: "required",
+                grant_specialty: "required",
+                years_of_training: "required",
+                other_training: {
+                    trainingRequired: true
+                }
+
+            },
+            messages: {
+                is_presenting_student: "Please specify if this has been is_presenting_student.",
+
+            },
+        });
+
+        if (!author_additional_info_form.valid()) {
+            return false; // Stop if form is not valid
+        }
         // Get form and prepare FormData
         const authorAdditionalInfoForm = document.getElementById('author_additional_info_form');
         const formData = new FormData(authorAdditionalInfoForm);
@@ -322,7 +352,7 @@ $(function(){
         }
 
         if (presentingAuthors.length === 0) {
-            toastr.error('Please select a presenting author');
+            toastr.error('Please select a Lead Presenter');
             return false;
         }
 

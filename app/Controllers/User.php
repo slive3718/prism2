@@ -346,6 +346,7 @@ class User extends BaseController
             'grant_country'                  => isset($post['grantCountry']) ? trim($post['grantCountry']) : $existingPaper['grant_country'],
             'grant_sexual_orientation'       => isset($post['grant_sexual_orientation']) ? trim($post['grant_sexual_orientation']) : $existingPaper['grant_sexual_orientation'],
             'grant_other_relevant_details'   => isset($post['grant_other_relevant_details']) ? trim($post['grant_other_relevant_details']) : $existingPaper['grant_other_relevant_details'],
+            'other_training'   => isset($post['other_training']) ? trim($post['other_training']) : $existingPaper['other_training'],
         ];
 
         // Remove fields that haven't changed

@@ -152,7 +152,7 @@
 
                         <div class="presentingAuthorSubInfo mt-3">
                             <p> Is <span class="presentingAuthorName"></span> a Student ?</p>
-                            <input type="radio" class="form-check-input" name="is_presenting_student" id="is_presenting_studentYes" value="1" <?=(isset($paper) && $paper['is_presenting_student'] == '1')?'checked':'' ?>> <label><span class="text-danger">*</span>Yes</label>
+                            <input type="radio" class="form-check-input" name="is_presenting_student" id="is_presenting_studentYes" value="1" <?=(isset($paper) && $paper['is_presenting_student'] == '1')?'checked':'' ?> required> <label><span class="text-danger">*</span>Yes</label>
                             <input type="radio" class="form-check-input ms-5" name="is_presenting_student" id="is_presenting_studentNo" value="0" <?=(isset($paper) && $paper['is_presenting_student'] == '0')?'checked':'' ?>> <label><span class="text-danger">*</span>No</label>
                             <br><br>
                             <p>
@@ -162,7 +162,7 @@
                             </p>
                             <div id="eligibilityDiv"><br>
                                 <p> Is <span class="presentingAuthorName"></span></span> eligible for Trainee Travel Grant ?</p>
-                                <input type="radio" class="form-check-input" name="is_eligible_grant" id="is_eligible_grantYes" value="1" <?=(isset($paper) && $paper['is_eligible_grant'] == '1')?'checked':'' ?>> <label><span class="text-danger">*</span>Yes</label>
+                                <input type="radio" class="form-check-input" name="is_eligible_grant" id="is_eligible_grantYes" value="1" <?=(isset($paper) && $paper['is_eligible_grant'] == '1')?'checked':'' ?> required> <label><span class="text-danger">*</span>Yes</label>
                                 <input type="radio" class="form-check-input ms-5" name="is_eligible_grant" id="is_eligible_grantNo" value="0" <?=(isset($paper) && $paper['is_eligible_grant'] == '0')?'checked':'' ?>> <label><span class="text-danger">*</span>No</label>
 
                                 <br>
@@ -175,14 +175,14 @@
                                     <p>PRISM Annual Meeting Trainee Grant Application for <span class="presentingAuthorName"></span></p>
                                     <p><span class="text-danger">*</span><strong>Letter of Intent</strong> (max. 400 words)</p>
                                     <p>Briefly explain your need for a travel grant and how you would benefit from receiving a travel grant</p>
-                                    <textarea  class="form-control required" name="letter_of_intent" title="Letter of intent" rows="10"><?=(isset($paper) && $paper['letter_of_intent'] !== '')?$paper['letter_of_intent']:'' ?></textarea>
+                                    <textarea  class="form-control required" name="letter_of_intent" title="Letter of intent" rows="10" required><?=(isset($paper) && $paper['letter_of_intent'] !== '')?$paper['letter_of_intent']:'' ?></textarea>
                                     <div class="mb-5 ms-3 mt-2"><span class="letterOfIntentWordCount fw-bolder"></span> <span>word(s)</span></div>
                                 </div>
                                 <div>
                                     <p><span class="text-danger">*</span><strong>Explanation of contribution (max. 200 words)</strong></p>
                                     <p>Briefly explain how your attendance or the presentation of your research abstract will specifically contribute
                                         to the research and education initiatives upheld by PRiSM at the annual meeting. </p>
-                                    <textarea  class="form-control required" name="explanation_of_contribution" title="Explanation of contribution" rows="5"><?=(isset($paper) && $paper['explanation_of_contribution'] !== '')?$paper['explanation_of_contribution']:'' ?></textarea>
+                                    <textarea  class="form-control required" name="explanation_of_contribution" title="Explanation of contribution" rows="5" required><?=(isset($paper) && $paper['explanation_of_contribution'] !== '')?$paper['explanation_of_contribution']:'' ?></textarea>
                                     <div class="mb-5 ms-3 mt-2"><span class="contributionWordCount fw-bolder"></span> <span>word(s)</span></div>
                                 </div>
                                 <br>
@@ -190,12 +190,12 @@
                                 <div>
                                     <div class="form-group form-control">
                                         <div class="form-input-inline"><span class="text-danger">*</span><strong>Please indicate the degree or specialty that you are working toward:</strong></d>
-                                            <input type="text" class="form-input-inline required" name="grant_specialty" title="Specialty" value="<?=(isset($paper) && $paper['specialty_working_toward'] !== '')?$paper['specialty_working_toward']:'' ?>" >
+                                            <input type="text" class="form-input-inline required" name="grant_specialty" title="Specialty" value="<?=(isset($paper) && $paper['specialty_working_toward'] !== '')?$paper['specialty_working_toward']:'' ?>" required >
                                             <div>
                                                 <br>
                                                 <div class="form-group">
                                                     <label class="text-danger form-input-inline">*</label><strong>Years in training at the current level:</strong>
-                                                    <select class="form-input-inline required" name="years_of_training" title="Years of training" >
+                                                    <select class="form-input-inline required" name="years_of_training" title="Years of training" required >
                                                         <option value="">Select </option>
                                                         <option value="1" <?=(isset($paper) && $paper['years_of_training'] == '1')?'selected':'' ?>>1 year </option>
                                                         <option value="2" <?=(isset($paper) && $paper['years_of_training'] == '2')?'selected':'' ?>>2 years </option>
@@ -279,15 +279,15 @@
                                 <div>
                                     <div class="form-group ">
                                         <div class="form-input-inline"><span class="text-danger">*</span>Grant City:</div>
-                                        <input type="text" class="form-input-inline form-control required" name="grantCity" title="City" value="<?=(isset($paper) &&  $paper['grant_city'] !== '' )?  $paper['grant_city'] :'' ?>">
+                                        <input type="text" class="form-input-inline form-control required" name="grantCity" title="City" value="<?=(isset($paper) &&  $paper['grant_city'] !== '' )?  $paper['grant_city'] :'' ?>" required>
                                     </div>
                                     <div class="form-group ">
                                         <div class="form-input-inline"><span class="text-danger">*</span>Grant State:</div>
-                                        <input type="text" class="form-input-inline form-control required" name="grantState" title="State"  value="<?=(isset($paper) &&  $paper['grant_state'] !== '' )?  $paper['grant_state'] :'' ?>">
+                                        <input type="text" class="form-input-inline form-control required" name="grantState" title="State"  value="<?=(isset($paper) &&  $paper['grant_state'] !== '' )?  $paper['grant_state'] :'' ?>" required>
                                     </div>
                                     <div class="form-group ">
                                         <div class="form-input-inline"><span class="text-danger">*</span>Grant Country:</div>
-                                        <input type="text" class="form-input-inline form-control required" name="grantCountry" title="Country"  value="<?=(isset($paper) &&  $paper['grant_country'] !== '' )?  $paper['grant_country'] :'' ?>">
+                                        <input type="text" class="form-input-inline form-control required" name="grantCountry" title="Country"  value="<?=(isset($paper) &&  $paper['grant_country'] !== '' )?  $paper['grant_country'] :'' ?>" required>
                                     </div>
                                 </div>
 
@@ -296,7 +296,7 @@
                                     <label for="race">Race</label>
                                     <select class="form-control" id="race" name="grant_race">
                                         <option value="">-- Select Race --</option>
-                                        <option value="asian" <?=(isset($paper) && $paper['grant_race'] == 'asian')?'selected':'' ?>>Asian</option>
+                                        <option value="asian" <?=(isset($paper) && $paper['grant_race'] == 'asian')?'selected':'' ?> >Asian</option>
                                         <option value="black" <?=(isset($paper) && $paper['grant_race'] == 'black')?'selected':'' ?>>Black or African American</option>
                                         <option value="latino" <?=(isset($paper) && $paper['grant_race'] == 'latino')?'selected':'' ?>>Hispanic or Latino</option>
                                         <option value="white" <?=(isset($paper) && $paper['grant_race'] == 'white')?'selected':'' ?>>White</option>
