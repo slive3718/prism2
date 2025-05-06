@@ -7,22 +7,6 @@
         <div class="m-auto text-center mb-2 fw-bolder text-primary">
             LOGIN
         </div>
-        <div class="text-center m-auto shadow-sm" style="width: 600px">
-            <div class="card">
-                <div class="card-header text-primary fw-bold"> NOTE FOR SUBMITTERS </div>
-                <div class="card-body text-start">
-                    <p>
-                        If you have previously submitted an abstract to a SRS Annual Meeting, please use those
-                        credentials to submit for AP2026.
-                    </p>
-                    <p>
-                        If you have previously been an author on an abstract for a SRS Annual Meeting, please
-                        use that email address and password: SRS. You can change your password once you are
-                        logged in under 'Settings'.
-                    </p>
-                </div>
-            </div>
-        </div>
 
         <?php if(1==1) :?>
         <div class="form-signin w-100 m-auto text-center">

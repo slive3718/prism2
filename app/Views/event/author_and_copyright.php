@@ -36,36 +36,15 @@
                     If your author data is INCOMPLETE or needs editing, please click on the <i class="fas fa-user-edit"></i> icon to fill out required fields and edit your information.
                 </li>
                 <li>
-                    You can add up to <strong>40 authors</strong>.
+                    You can add up to <strong>30 authors</strong>.
                 </li>
                 <li>
                     To adjust the author order, use the <i class="fas fa-arrow-up"></i> and <i class="fas fa-arrow-down"></i> arrows.
                 </li>
-                <li>
-                    A Relevant Financial Relationships Disclosure is required for each author.
-                </li>
             </ol>
 
-            <h5>Author Disclosures:</h5>
-            <ol>
-                <li>
-                    Disclosures are required for each author before the submission deadline. Your abstract cannot be finalized until all authors have completed their disclosures.
-                </li>
-                <li>
-                    If you are the submitter and an author, your disclosures will automatically be checked in the system.
-                </li>
-                <li>
-                    For other authors, the system will automatically check their disclosures once the author name is added. If the co-author’s disclosure is not current, you can email them by clicking <strong>'Email Author Now'</strong> displayed beside their name. This author will receive an email to complete their disclosures, and their status will be updated here.
-                </li>
-                <li>
-                    As a submitter, you will receive an email confirmation each time an author completes their disclosure. At any time before the submission deadline, you may return to the abstract submission system to check the status of your authors’ disclosures.
-                </li>
-                <li>
-                    You will receive an email when all authors on the submission have submitted disclosures.
-                </li>
-            </ol>
 
-            <div class="row mt-5">
+            <div class="row mt-3">
                 <div class="col-lg-5 col-md-12 col-sm-12">
                     <div class="mb-5 justify-content-end">
                         <button class="btn btn-primary btn-sm showSearchAuthorModal" style="min-width:100px; width:200px; max-width:200px; height:38px"> Add/Search for an Author</button>
@@ -135,7 +114,7 @@
 <!--                </div>-->
 <!--            </div>-->
 
-            <div class="row mt-4">
+            <div class="row">
                 <div class="row mt-4">
                     <div class="col-8">
                         <div>

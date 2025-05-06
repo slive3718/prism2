@@ -1,7 +1,7 @@
 <link href="<?=base_url()?>/assets/css/event/menu.css" rel="stylesheet">
 <style>
     .dropdown-item:hover {
-        background-color: #1a877c !important; /* Darker shade for better contrast */
+        background-color: #024464 !important; /* Darker shade for better contrast */
         color: #ffffff !important; /* Ensure text is white and readable */
     }
 </style>
@@ -40,7 +40,8 @@
                             Submitter Instructions <i class="fa-solid fa-document"></i></button>
                         <ul class="btn btn-outline-light dropdown-menu dropdown-menu-end mt-3 text-white" aria-labelledby="dropdownMenuButton1" style="background-color:#2aa69c">
                             <li><a class="dropdown-item text-white" href="<?=base_url()?>submission_guidelines" target="_blank">Submitter Guidelines</a></li>
-                            <li><a class="dropdown-item text-white" href="<?=base_url()?>/public/assets/documents/submission_references/Abstract_Submission_Directions.pdf" target="_blank">Abstract Directions</a></li>
+                            <li><a class="dropdown-item text-white" href="<?=base_url()?>assets/documents/TravelGrantInstructions.pdf" target="_blank">Travel Grant Instructions</a></li>
+<!--                            <li><a class="dropdown-item text-white" href="--><?php //=base_url()?><!--/public/assets/documents/submission_references/Abstract_Submission_Directions.pdf" target="_blank">Abstract Directions</a></li>-->
                             <?php if(session('user_id')): ?>
 
 <!--                            <li><a class="dropdown-item text-white" href="--><?php //=base_url().'public/assets/documents/submission_references/2025_Authors_Template.docx'?><!--" target="_blank">AFS Author Template</a></li>-->

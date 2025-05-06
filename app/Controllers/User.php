@@ -240,9 +240,9 @@ class User extends BaseController
         // Prepare data for insertion
         $insert_array = [
             'user_id'                => session('user_id'),
-            'primary_topic'      => $post['primary_topic'] ?? null,
+            'primary_topic'      => $post['primary_topic'] ? json_encode($post['primary_topic']) : null,
             'other_primary_topic'      => $post['other_primary_topic'] ?? null,
-            'secondary_topic'      => $post['secondary_topic'] ?? null,
+            'secondary_topic'      => $post['secondary_topic'] ? json_encode($post['secondary_topic']) :null,
             'other_secondary_topic'      => $post['other_secondary_topic'] ?? null,
 //            'previous_presentation'  => $post['previous_presentation'] ?? null,
             'basic_science_format'   => $post['basic_science_format'] ?? null,
@@ -413,7 +413,7 @@ class User extends BaseController
         $disclosure_current_date = (new SiteSettingModel())->where('name', 'disclosure_current_date')->first()['value'];
 
         $header_data = [
-            'title' => "Authors and Disclosure Panel"
+            'title' => "Authors"
         ];
         $data = [
             'id' => $this->request->uri->getSegment(4),
