@@ -95,7 +95,7 @@ $(function() {
 
                 Swal.fire({
                     title: "Info",
-                    html: 'Can you confirm that your abstract title, <strong>' + abstractTitle + '</strong>, is in title case? If not, click ‘Cancel’ to edit your title.',
+                    html: 'Can you confirm that your abstract title, <strong>' + abstractTitle + '</strong>, is all upper case? If not, click ‘Cancel’ to edit your title.',
                     icon: 'info',
                     showCancelButton: true,
                     confirmButtonText: "Save",

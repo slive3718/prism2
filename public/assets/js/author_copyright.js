@@ -870,9 +870,9 @@ async function getAuthorRow(index, author, presenting, senior_author, correspond
                    <i class="fa-solid fa-user-xmark"></i>
                 </a>
             </td>
-            <!-- <td class="tdCompleteStatus" status="${completeStatus ? 1 : 0}">
+            <td class="tdCompleteStatus" status="${completeStatus ? 1 : 0}">
                 ${completeStatus ? `<span class="text-success small">Completed</span>` : `<span class="text-danger small">Incomplete</span>`}
-            </td>
+      <!-- </td>
             <td style="text-align:center" class="copyrightStatus text-wrap">${copyrightStatus}</td>
             <td class="text-nowrap"><span class="small">${emailed}</span></td>
             <td class="text-nowrap">${actionButton}</td> -->
