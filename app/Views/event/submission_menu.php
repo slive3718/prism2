@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="alert alert-warning text-center" role="alert">
-                    Submission deadline is now: Thursday, August 15, 2024 at 5 pm ET.
+                    Submission deadline is now:  Monday, June 30, 2025 at 5 pm ET.
                 </div>
                 <div class="alert alert-success text-center" role="alert">
                     Note: Submissions are now open.
