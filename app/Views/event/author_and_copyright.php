@@ -27,9 +27,6 @@
                     You must select one presenting author. The presenting author will receive all notifications regarding this submission.
                 </li>
                 <li>
-                    The presenting author or senior author must be from the Asia/Oceania region.
-                </li>
-                <li>
                     Please check "Correspondent" for each author that should receive communication about this submission. The presenting author will automatically be a correspondent.
                 </li>
                 <li>
@@ -137,7 +134,7 @@
                             <p>
                                 PRISM Annual Meeting Trainee Travel Grant seeks applicants who are PRISM student trainee members or are applicants for membership
                                 to apply for this Travel Grant. You will need to be a member or a member applicant before you are able to access the award application.
-                                Click here  to view the <a href="<?=base_url()?>public/assets/documents/2024_Travel_Grant_Instructions.pdf" target="_blank"> Travel Grant Instructions </a>.
+                                Click here  to view the <a href="<?=base_url()?>public/assets/documents/TravelGrantInstructions.pdf" target="_blank"> Travel Grant Instructions </a>.
                             </p>
                             <div id="eligibilityDiv"><br>
                                 <p> Is <span class="presentingAuthorName"></span></span> eligible for Trainee Travel Grant ?</p>
