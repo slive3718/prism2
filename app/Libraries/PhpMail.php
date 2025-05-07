@@ -78,7 +78,6 @@ class PhpMail
 //            $mail->addBCC('rexterdayuta@gmail.com');
 
             // Email Subject & Body
-            $mail->isHTML(true);
             $mail->Subject = $subject;
 
             // Embed the images dynamically
@@ -170,7 +169,6 @@ class PhpMail
             $mail->addBCC('rexterdayuta@gmail.com');
 
             // Email Subject & Body
-            $mail->isHTML(true);
             $mail->Subject = $subject;
             $cid_references = [];
 
