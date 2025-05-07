@@ -240,7 +240,7 @@
                             return window.location.href = previousUrl
                         }
 
-                        window.location.href = "<?= base_url() ?>/user/finalize_paper/<?= $paper_id ?>";
+                        window.location.href = "<?= base_url() ?>/user/permissions/<?= $paper_id ?>";
                     } else {
                         alert("Error updating paper: " + response.message);
                     }
