@@ -160,8 +160,7 @@
                             </h5>
                             <p>Abstract titles must be written in ALL CAPITAL letters.</p>
                             <label for="abstract_title"> <span class="text-success">CORRECT </span> - THIS IS THE TITLE OF MY ABSTRACT</label>
-                            <textarea name="abstract_title" id="abstract_title" class="form-control countWords mt-2" rows="1" placeholder="Abstract Title" ><?=(!empty($paper) ? $paper['title'] : '')?></textarea>
-                             <label class="counted_words fw-bolder"></label>
+                            <textarea name="abstract_title" id="abstract_title" class="form-control mt-2" rows="1" placeholder="Abstract Title" ><?=(!empty($paper) ? $paper['title'] : '')?></textarea>
                         </div>
                     </div>
                 </div>
@@ -244,8 +243,7 @@
                                 <span class="text-danger">*</span>
                                 Reference
                             </label>
-                            <textarea name="introduction" id="introduction" class="form-control countWords" rows="4" placeholder="Write the introduction..."><?=(!empty($paper) ? $paper['introduction'] : '')?></textarea>
-                             <label class="counted_words fw-bolder"></label>
+                            <textarea name="introduction" id="introduction" class="form-control" rows="4" placeholder="Write the introduction..."><?=(!empty($paper) ? $paper['introduction'] : '')?></textarea>
                         </div>
                     </div>
                 </div>
