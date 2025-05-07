@@ -130,22 +130,56 @@
                                     <td style="width: 100px;"><a class="float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit </a></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:250px" class="text-end ">Primary Topic : </td>
-                                    <td> <?php foreach($abstract_topics as $topics){
-                                            if((in_array($topics['value'], json_decode($papers->primary_topic)))){
-                                                echo $topics['name'] .(($topics['value'] == "26") ? "( ".$papers['other_primary_topic'] .")": '');
+                                    <td style="width:250px" class="text-end">Primary Topic:</td>
+                                    <td>
+                                        <?php
+                                        $primaryTopics = json_decode($papers->primary_topic) ?? [];
+                                        $primaryOutput = [];
+
+                                        foreach($abstract_topics as $topic) {
+                                            if(in_array($topic['value'], $primaryTopics)) {
+                                                $display = $topic['name'];
+                                                if($topic['value'] == "26" && !empty($papers->other_primary_topic)) {
+                                                    $display .= " (" . htmlspecialchars($papers->other_primary_topic) . ")";
+                                                }
+                                                $primaryOutput[] = $display;
                                             }
-                                        }?></td>
-                                    <td style="width: 100px;"><a href="<?=base_url().'user/edit_papers_submission/'.$paper_id?>" class="float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit </a></td>
+                                        }
+
+                                        echo implode(', ', $primaryOutput) ?: 'None selected';
+                                        ?>
+                                    </td>
+                                    <td style="width: 100px;">
+                                        <a href="<?= base_url('user/edit_papers_submission/'.$paper_id) ?>" class="float-end btn btn-primary btn-sm">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:250px" class="text-end ">Secondary Topic : </td>
-                                    <td>  <?php foreach($abstract_topics as $topics){
-                                            if((in_array($topics['value'], json_decode($papers->secondary_topic)))){
-                                                echo $topics['name'] .(($topics['value'] == "26") ? "( ".$papers['other_secondary_topic'] .")": '');
+                                    <td style="width:250px" class="text-end">Secondary Topic:</td>
+                                    <td>
+                                        <?php
+                                        $secondaryTopics = json_decode($papers->secondary_topic) ?? [];
+                                        $secondaryOutput = [];
+
+                                        foreach($abstract_topics as $topic) {
+                                            if(in_array($topic['value'], $secondaryTopics)) {
+                                                $display = $topic['name'];
+                                                if($topic['value'] == "26" && !empty($papers->other_secondary_topic)) {
+                                                    $display .= " (" . htmlspecialchars($papers->other_secondary_topic) . ")";
+                                                }
+                                                $secondaryOutput[] = $display;
                                             }
-                                        }?></td>
-                                    <td style="width: 100px;"><a href="<?=base_url().'user/edit_papers_submission/'.$paper_id?>" class="float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit </a></td>
+                                        }
+
+                                        echo implode(', ', $secondaryOutput) ?: 'None selected';
+                                        ?>
+                                    </td>
+                                    <td style="width: 100px;">
+                                        <a href="<?= base_url('user/edit_papers_submission/'.$paper_id) ?>" class="float-end btn btn-primary btn-sm">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="text-end">This abstract is :</td>
