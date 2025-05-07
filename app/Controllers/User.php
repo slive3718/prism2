@@ -1085,10 +1085,12 @@ class User extends BaseController
             $from = ['name'=>env('MAIL_FROM'), 'email'=>env('MAIL_FROM_ADDRESS')];
             $addTo = $user['email'];
 
-            $email_header = '<img id="main-banner" src="https://ap.owpm2.com/main_banner.png" class=" figure-img" alt="Main Banner" style="width: 100% !important;object-fit: cover; mix-blend-mode: multiply;">';
+//############## add header if header image path is set ###############
+            if(!empty($MailTemplates['header_image'])) {
+                $addContent = '<img id="main-banner" src="' .base_url().$MailTemplates['header_image'] . '" class=" figure-img" alt="Main Banner" style="width: 100% !important;object-fit: cover; mix-blend-mode: multiply;">';
+            }
 
             $subject = $MailTemplates['email_subject'];
-            $addContent = $email_header;
             $addContent .= $email_body;
 
             $embeded_images = [];
@@ -1119,7 +1121,7 @@ class User extends BaseController
                 ];
             }
 
-            $addContent .= '<p>Here is the submission details: <img src="{image0}" alt="Embedded Image" /></p>';
+            $addContent .= '<p>Here are your submission details: <img src="{image0}" alt="Embedded Image" /></p>';
 
             if(!empty($uploadedFiles)) {
                 foreach ($uploadedFiles as $uploadedFile) {
