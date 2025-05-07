@@ -303,7 +303,7 @@ $routes->group('',['filter' => 'authGuard'], function ($routes)
     $routes->get('user/edit_papers_submission/(:any)', 'User::edit_papers_submission/$1');
 
     $routes->get('user/authors_and_copyright/(:any)', 'User::authors_and_copyright/$1');
-    $routes->get('user/level_of_evidence/(:any)', 'User::level_of_evidence/$1');
+    $routes->get('user/permissions/(:any)', 'User::permissions/$1');
     $routes->get('user/submission_menu/(:any)', 'User::submission_menu/$1');
     $routes->get('user', 'User::index/$1');
     $routes->get('user/finalize_paper/(:any)', 'User::finalize_paper/$1');
@@ -361,8 +361,6 @@ $routes->group('',['filter' => 'authGuard'], function ($routes)
 
     $routes->get('fda/(:any)', 'FDADisclosure::view_fda/$1');
     $routes->post('save_fda_disclosure', 'FDADisclosure::save_fda_disclosure/$1');
-
-    $routes->get('permissions/(:any)', 'User::view_permissions/$1');
 
 
     //Event landing page
