@@ -151,15 +151,15 @@
                                     <p>PRISM Annual Meeting Trainee Grant Application for <span class="presentingAuthorName"></span></p>
                                     <p><span class="text-danger">*</span><strong>Letter of Intent</strong> (max. 400 words)</p>
                                     <p>Briefly explain your need for a travel grant and how you would benefit from receiving a travel grant</p>
-                                    <textarea  class="form-control required" name="letter_of_intent" title="Letter of intent" rows="10" required><?=(isset($paper) && $paper['letter_of_intent'] !== '')?$paper['letter_of_intent']:'' ?></textarea>
-                                    <div class="mb-5 ms-3 mt-2"><span class="letterOfIntentWordCount fw-bolder"></span> <span>word(s)</span></div>
+                                    <textarea  class="form-control required countWordsLOT" name="letter_of_intent" title="Letter of intent" rows="10" required><?=(isset($paper) && $paper['letter_of_intent'] !== '')?$paper['letter_of_intent']:'' ?></textarea>
+                                    <label class="counted_words fw-bolder"></label>
                                 </div>
-                                <div>
+                                <div class="mt-4">
                                     <p><span class="text-danger">*</span><strong>Explanation of contribution (max. 200 words)</strong></p>
                                     <p>Briefly explain how your attendance or the presentation of your research abstract will specifically contribute
                                         to the research and education initiatives upheld by PRiSM at the annual meeting. </p>
-                                    <textarea  class="form-control required" name="explanation_of_contribution" title="Explanation of contribution" rows="5" required><?=(isset($paper) && $paper['explanation_of_contribution'] !== '')?$paper['explanation_of_contribution']:'' ?></textarea>
-                                    <div class="mb-5 ms-3 mt-2"><span class="contributionWordCount fw-bolder"></span> <span>word(s)</span></div>
+                                    <textarea  class="form-control required countWordsEOC" name="explanation_of_contribution" title="Explanation of contribution" rows="5" required><?=(isset($paper) && $paper['explanation_of_contribution'] !== '')?$paper['explanation_of_contribution']:'' ?></textarea>
+                                    <label class="counted_words fw-bolder"></label>
                                 </div>
                                 <br>
                                 <br>
@@ -344,6 +344,7 @@
 <?= view('event/common/searchAuthorModal'); ?>
 <?= view('event/common/addAuthorModal'); ?>
 <?= view('event/common/addInstitutionModal'); ?>
+<script src="<?=base_url()?>assets/js/helpers.js"></script>
 <script>
     let current_user_id = "<?=session('user_id')?>"
     let basic_science_format_status = "<?= !empty($paper) && $paper['basic_science_format'] == 'Yes' ? 1 : 0?>"
@@ -423,35 +424,28 @@
             }
         })
 
-        var lotIntitial = $('textarea[name="letter_of_intent"]').val();
-        $('.letterOfIntentWordCount').text((lotIntitial !== '') ? countWords(lotIntitial) : 0);
-
-        $('textarea[name="letter_of_intent"]').on('input change keyup load', function(){
-            if($(this).val() == ''){
-                $('.letterOfIntentWordCount').text(0)
-            }else {
-                if((countWords($(this).val())) > 400){
-                    $('.letterOfIntentWordCount').addClass('text-danger')
-                }else
-                    $('.letterOfIntentWordCount').removeClass('text-danger')
-                $('.letterOfIntentWordCount').text(countWords($(this).val()))
+        WordCounterHelper.init(
+            'textarea.countWordsLOT',  // Textarea selector
+            '.counted_words',       // Word count display
+            '',
+            {
+                wordLimit: 400,
+                wordCountText: 'Words: ',
+                exceedClass: 'text-danger',
+                withinLimitClass: 'text-info'
             }
-        })
-
-        var contributionInitial = $('textarea[name="explanation_of_contribution"]').val();
-        $('.contributionWordCount').text((contributionInitial) ? countWords(contributionInitial) : 0);
-
-        $('textarea[name="explanation_of_contribution"]').on('input change keyup load', function(){
-            if($(this).val() == ''){
-                $('.contributionWordCount').text(0)
-            }else {
-                if((countWords($(this).val())) > 200){
-                    $('.contributionWordCount').addClass('text-danger')
-                }else
-                    $('.contributionWordCount').removeClass('text-danger')
-                $('.contributionWordCount').text(countWords($(this).val()))
+        );
+        WordCounterHelper.init(
+            'textarea.countWordsEOC',  // Textarea selector
+            '.counted_words',       // Word count display
+            '',
+            {
+                wordLimit: 200,
+                wordCountText: 'Words: ',
+                exceedClass: 'text-danger',
+                withinLimitClass: 'text-info'
             }
-        })
+        );
     })
 
     $('.cvUploadBtn').on('click', function(e){
@@ -476,26 +470,6 @@
         }
     }
 
-    function countWords(str) {
-        str = str.replace(/<[^>]*>/g, ' ');
-        // Remove leading and trailing white spaces
-        str = str.trim();
-
-        // Replace multiple spaces with a single space
-        str = str.replace(/\s+/g, ' ');
-
-        if (str === '') {
-            return 0;
-        }
-
-        // Split the string by space
-        var words = str.split(' ');
-
-        // Count the number of words
-        var wordCount = words.length;
-
-        return wordCount;
-    }
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);

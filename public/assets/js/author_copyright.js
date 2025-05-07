@@ -320,8 +320,13 @@ $(function(){
 
             },
             messages: {
-                is_presenting_student: "Please specify if this has been is_presenting_student.",
-
+                is_presenting_student: "Please specify whether this is a presenting student.",
+                is_eligible_grant: "Please indicate if the applicant is eligible for a grant.",
+                letter_of_intent: "Please provide the letter of intent.",
+                explanation_of_contribution: "Please provide an explanation of the contribution.",
+                grant_specialty: "Please specify the grant specialty.",
+                years_of_training: "Please enter the number of years of training.",
+                trainingRequired: "Please specify the required training."
             },
         });
 
@@ -360,6 +365,23 @@ $(function(){
             toastr.error('Please select at least one correspondent');
             return false;
         }
+
+        const countWordsError  = $('.counted_words').map(function(){
+            if($(this).hasClass('text-danger')){
+                return true;
+            }
+        })
+        // const countWordsError = $('.counted_words').each(function(){
+        //     if($(this).hasClass('text-danger')){
+        //         return true;
+        //     }
+        // })
+
+        if (Object.values(countWordsError).some(val => val === true)) {
+            toastr.error('Words Limit exceed!')
+            return false;
+        }
+
 
         // Check if any author information is incomplete
         const incompleteAuthors = $('.tdCompleteStatus[status="0"]').length;
