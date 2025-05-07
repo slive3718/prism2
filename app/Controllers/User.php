@@ -1489,7 +1489,9 @@ class User extends BaseController
 //            'signature_signed_date' => 'Disclosure'
         ];
 
-        $paperRequiredFields = [];
+        $paperRequiredFields = [
+            'signature_1'=>'Incomplete Permissions'
+        ];
 
         $incomplete = [];
 
@@ -1508,7 +1510,7 @@ class User extends BaseController
 
         // Check Required Paper Fields
         foreach ($paperRequiredFields as $field => $label) {
-            if (empty($paper[$field])) {
+            if (empty($paper->$field)) {
                 $incomplete['paper'][] = [
                     'required' => "$label for Paper: $paper_id",
                     'message'  => "$label for Paper: $paper_id"
