@@ -347,6 +347,12 @@ class User extends BaseController
             'grant_sexual_orientation'       => isset($post['grant_sexual_orientation']) ? trim($post['grant_sexual_orientation']) : $existingPaper['grant_sexual_orientation'],
             'grant_other_relevant_details'   => isset($post['grant_other_relevant_details']) ? trim($post['grant_other_relevant_details']) : $existingPaper['grant_other_relevant_details'],
             'other_training'   => isset($post['other_training']) ? trim($post['other_training']) : $existingPaper['other_training'],
+
+            //other details from permissions
+            'permission_1'   => isset($post['permission_1']) ? trim($post['permission_1']) : $existingPaper['permission_1'],
+            'permission_2'   => isset($post['permission_2']) ? trim($post['permission_2']) : $existingPaper['permission_2'],
+            'signature_1'   => isset($post['signature_1']) ? trim($post['signature_1']) : $existingPaper['signature_1'],
+            'signature_2'   => isset($post['signature_2']) ? trim($post['signature_2']) : $existingPaper['signature_2'],
         ];
 
         // Remove fields that haven't changed
@@ -440,7 +446,7 @@ class User extends BaseController
         ]);
     }
 
-    public function level_of_evidence($paper_id){
+    public function permissions($paper_id){
         $this->validate_user_access($paper_id);
         $paper = (new PapersModel())->asArray()->find($paper_id);
 
@@ -454,10 +460,10 @@ class User extends BaseController
             'previous_url' => previous_url(),
             'previous_page' => service('uri')->setURI(previous_url())->getSegment($this->setSegment(3))?? '',
         ];
-//        print_r($paper);exit;
+
         return
             view('event/common/header', $header_data).
-            view('event/level_of_evidence',$data).
+            view('event/permissions',$data).
             view('event/common/footer')
             ;
     }
@@ -1024,10 +1030,8 @@ class User extends BaseController
                 'user_agent' => $this->request->getUserAgent()->getBrowser(),
                 'ip_address' => $this->request->getIPAddress(),
             ];
-//            print_r($response);exit;
             if ($response->statusCode == 200) {
                 // Email sent successfully
-//                save to logs
                 $logs = new LogsModel();
                 $emailLogs = [
                     'user_id' => session('user_id'),
@@ -1432,6 +1436,7 @@ class User extends BaseController
         $CountriesModel = new CountriesModel();
         $DesignationsModel = new DesignationsModel();
         $AbstractCategoriesModel = new AbstractCategoriesModel();
+        $AbstractTopics = new AbstractTopicsModel();
 
         // Fetch Paper Details
         $paper = $PapersModel
@@ -1524,7 +1529,8 @@ class User extends BaseController
             'incompleteStatus' => $incomplete,
             'authors' => $authors,
             'categories' => $categories,
-            'study_groups' => $studyGroups
+            'study_groups' => $studyGroups,
+            'abstract_topics' => $AbstractTopics->findAll()
         ];
 
         return view('event/common/header', $header_data) .

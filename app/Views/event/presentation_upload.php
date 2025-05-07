@@ -29,7 +29,7 @@
                 </table>
 
             </div>
-            <div class="my-4">
+            <div class="my-3">
                 <p><strong>Step 1.</strong> Click on "Choose File" and navigate the file you wish to upload.</p>
                 <input type="file" name="uploadFile" accept=".jpeg, .JPEG, .jpg, .JPG" class="form-control uploadFile" id=""  >
                 <p><strong>Step 2.</strong> Click on "Upload File" to upload the new file to the system server.</p>

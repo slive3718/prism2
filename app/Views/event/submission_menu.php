@@ -58,20 +58,18 @@
                                 <?php endif?>
                             </a>
 
-                          <!--  <?php /*if(!empty($paper) && $paper['basic_science_format'] == 'Yes'): */?>
-                                <a href="<?php /*=base_url()*/?>user/level_of_evidence/<?php /*=$paper_id*/?>" class="btn btn-white btn-sm round-0 text-start mt-2 ps-0 fw-bold" style="width:100%; border-bottom:1px solid blue">
-                                    <num class="btn-sm me-2 text-white " style="background-color:#0072bb; padding:5px 10px 5px 10px"><?php /*= $stepNumber++ */?> </num> Level of Evidence
-                                    <?php /*if(empty($paper) || empty($paper['min_follow_up_period'] )): */?>
-                                        <span class="float-end text-danger"><i class="fw-bold fas fa-exclamation-circle"></i> Incomplete </span>
-                                    <?php /*else: */?>
-                                        <span class="float-end text-success"><i class="fw-bold fas fa-exclamation-circle"></i> Complete </span>
-                                    <?php /*endif*/?>
-                                </a>
-                            --><?php /*endif */?>
-
                             <a href="<?=base_url()?>user/presentation_upload/<?=$paper_id?>" class="btn btn-white btn-sm round-0 text-start mt-2 ps-0 fw-bold" style="width:100%; border-bottom:1px solid blue">
                                 <num class="btn-sm me-2 text-white " style="background-color:#0072bb; padding:5px 10px 5px 10px"><?= $stepNumber++ ?> </num> Image Upload
                                 <?php if(!empty($incompleteStatus['paperUpload'])):?>
+                                    <span class="float-end text-danger"><i class="fw-bold fas fa-exclamation-circle"></i> Incomplete </span>
+                                <?php else: ?>
+                                    <span class="float-end text-success"><i class="fw-bold fas fa-exclamation-circle"></i> Complete </span>
+                                <?php endif?>
+                            </a>
+
+                            <a href="<?=base_url()?>user/permissions/<?=$paper_id?>" class="btn btn-white btn-sm round-0 text-start mt-2 ps-0 fw-bold" style="width:100%; border-bottom:1px solid blue">
+                                <num class="btn-sm me-2 text-white " style="background-color:#0072bb; padding:5px 10px 5px 10px"><?= $stepNumber++ ?> </num> Permissions
+                                <?php if(empty($paper) || empty($paper['permission_1'] )): ?>
                                     <span class="float-end text-danger"><i class="fw-bold fas fa-exclamation-circle"></i> Incomplete </span>
                                 <?php else: ?>
                                     <span class="float-end text-success"><i class="fw-bold fas fa-exclamation-circle"></i> Complete </span>
