@@ -281,7 +281,7 @@ class UserManagerController extends Controller
         $institution_id = $institution ? $institution['id'] : $this->create_institution($cellValue);
 
         if (empty($institution_id)) {
-            $institution_id = null;
+            $institution_id = NULL;
         }
 
         $designation_ids = $this->set_designations($cellValue[6]);
@@ -330,7 +330,7 @@ class UserManagerController extends Controller
             ->first();
 
         if (empty($city)) {
-            return null; // Return null if city is not found
+            return NULL; // Return null if city is not found
         }
 
         $city_id = $city['id'];
@@ -349,7 +349,7 @@ class UserManagerController extends Controller
             return $InstitutionModel->insertID();
         }
 
-        return null;
+        return NULL;
     }
 
     function set_designations($designation_cell){
