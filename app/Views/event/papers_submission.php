@@ -345,7 +345,7 @@
                 </div>
 
                 <div class="mt-5">
-                    <p>Abstracts accepted for presentation at the 12th Annual Meeting may qualify for the following awards:</p>
+                    <p>Abstracts accepted for presentation at the Annual Meeting may qualify for the following awards:</p>
                     <ul>
                         <li>Hank Chambers: Best Scientific Presentation</li>
                         <li>Kevin Shea: for Best Scientific Poster</li>
