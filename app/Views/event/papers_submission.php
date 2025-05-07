@@ -19,7 +19,6 @@
             }
             ?>
 
-
             <form id="abstractSubmissionForm"  action="<?= $actionUrl ?>" method="post">
                 <input type="hidden" value="<?=(isset($paper_id) && !empty($paper_id))? $paper_id : ''?>" name="paper_id">
                 <div class="row">
@@ -104,8 +103,9 @@
                         <?php endforeach; ?>
                     <?php endif ?>
                     <div class="otherPrimaryTopicDiv" style="display: <?= (isset($paper) && $paper['primary_topic'] && in_array(26, json_decode($paper['primary_topic'] ?? []))) ? 'block' : 'none' ?>">
-                        <input type="text" name="other_primary_topic" id="otherPrimaryTopic" value="<?= isset($paper) ? $paper['other_primary_topic'] : '' ?>">
                         <label for="otherPrimaryTopic">Other Primary Topic</label>
+                        <input type="text" class="form-control" name="other_primary_topic" id="otherPrimaryTopic" value="<?= isset($paper) ? $paper['other_primary_topic'] : '' ?>">
+
                     </div>
                 </div>
 
@@ -124,32 +124,31 @@
                         <?php endforeach; ?>
                     <?php endif ?>
                     <div class="otherSecondaryTopicDiv" style="display:  <?= (isset($paper) && $paper['primary_topic'] && in_array(26, json_decode($paper['primary_topic'] ?? []))) ? 'block' : 'none' ?>">
-                        <input type="text" name="other_secondary_topic" id="otherSecondaryTopic" value="<?= isset($paper) ? $paper['other_secondary_topic'] : '' ?>">
                         <label for="otherSecondaryTopic">Other Secondary Topic</label>
+                        <input type="text" class="form-control" name="other_secondary_topic" id="otherSecondaryTopic" value="<?= isset($paper) ? $paper['other_secondary_topic'] : '' ?>">
+
                     </div>
                 </div>
 
                 <!-- ##########   Abstract Body Section ############### -->
-<!--                <div class="row abstract-body">-->
-<!--                    <div class="col mt-4">-->
-<!--                        <div id="abstract-body-container">-->
-<!--                            <h5 class="title">-->
-<!--                                <span class="text-danger">*</span>-->
-<!--                                Abstract Body-->
-<!--                            </h5>-->
-<!--                            <p>Abstract body is limited to 2500 characters which includes: Title, Hypothesis, Study Design, Introduction, Methods, Results, and Conclusions. The character count includes titles, spaces, abstract body, and table/image captions. It does not include authors or institutions. Please save your work intermittently by using the 'save' option at the bottom of the page.</p>-->
-<!--                            <p>To maintain an unbiased, blinded review of all abstracts, please do NOT include any identifying information such as researcher, institution, or study group names in your abstract. Inclusion of any identifying information will disqualify your abstract from review.</p>-->
-<!--                            <p>Please note: this text is what will be printed in the Final Program if it is accepted. You WILL NOT BE ABLE TO EDIT IT AFTER THE SUBMISSION DEADLINE.</p>-->
-<!--                            <div class="text-center m-auto p-4" style="width: 600px; border:4px dotted black">-->
-<!--                                Total Abstract Body Count: <span id="abstract_body_count">0 characters</span> <br>-->
+                <div class="row abstract-body">
+                    <div class="col mt-4">
+                        <div id="abstract-body-container">
+                            <h5 class="title">
+                                <span class="text-danger">*</span>
+                                Abstract Body
+                            </h5>
+                            <p>Abstract body is limited to 400 words which includes a Background, Hypothesis, Methods, Results and Conclusion.</p>
+                            <div class="text-center m-auto p-4" style="width: 600px; border:4px dotted black">
+                                Total Abstract Body Count: <span id="abstract_body_count">0 characters</span> <br>
 <!--                                --><?php //if(!empty($paper) && trim($paper['image_caption']) !== ''): ?>
 <!--                                Image Caption Body Count: <span id="image_caption_body_count" >0 characters</span><br>-->
 <!--                                --><?php //endif ?>
-<!--                                Limit: 2500-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                                Limit: 400
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- ##########   Question 4: Abstract Title ############### -->
                 <div class="row abstract-title">
@@ -162,7 +161,7 @@
                             <p>Abstract titles must be written in ALL CAPITAL letters.</p>
                             <label for="abstract_title"> <span class="text-success">CORRECT </span> - THIS IS THE TITLE OF MY ABSTRACT</label>
                             <textarea name="abstract_title" id="abstract_title" class="form-control countWords mt-2" rows="1" placeholder="Abstract Title" ><?=(!empty($paper) ? $paper['title'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -176,7 +175,7 @@
                                 Background
                             </label>
                             <textarea name="study_design" id="study_design" class="form-control countWords" rows="4" placeholder="Describe the study design..."><?=(!empty($paper) ? $paper['study_design'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -190,7 +189,7 @@
                                 Hypothesis
                             </label>
                             <textarea name="hypothesis" id="hypothesis" class="form-control countWords" rows="4" placeholder="Enter your hypothesis..."><?=(!empty($paper) ? $paper['hypothesis'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -204,7 +203,7 @@
                                 Methods
                             </label>
                             <textarea name="methods" id="methods" class="form-control countWords" rows="4" placeholder="Explain the methods used..."><?=(!empty($paper) ? $paper['methods'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -218,7 +217,7 @@
                                 Results
                             </label>
                             <textarea name="results" id="results" class="form-control countWords" rows="4" placeholder="Summarize the results..."><?=(!empty($paper) ? $paper['results'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -232,7 +231,7 @@
                                 Conclusions
                             </label>
                             <textarea name="conclusions" id="conclusions" class="form-control countWords" rows="4" placeholder="Provide the conclusions..."><?=(!empty($paper) ? $paper['conclusions'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -246,7 +245,7 @@
                                 Reference
                             </label>
                             <textarea name="introduction" id="introduction" class="form-control countWords" rows="4" placeholder="Write the introduction..."><?=(!empty($paper) ? $paper['introduction'] : '')?></textarea>
-                             <!-- <label class="counted_words fw-bolder"></label> -->
+                             <label class="counted_words fw-bolder"></label>
                         </div>
                     </div>
                 </div>
@@ -475,7 +474,7 @@
 
         $('textarea.countWords').on('input', function(){
             let total_body_count = parseInt($('#abstract_body_count').text())
-            let remaining = 2500 - total_body_count;
+            let remaining = 400 - total_body_count;
             $('#remaining_caption_count').text(remaining)
         })
 
@@ -484,8 +483,8 @@
             let abstract_body_count = $('#abstract_body_count').text();
             let image_caption_body_count = $('#image_caption_body_count').text();
 
-            if(parseInt(abstract_body_count) + parseInt(image_caption_body_count) > 2500){
-                toastr.error('Total of description already exceed 2500 words!')
+            if(parseInt(abstract_body_count) + parseInt(image_caption_body_count) > 400){
+                toastr.error('Total of description already exceed 400 words!')
                 $('#abstract_body_count').closest('div').addClass('text-danger')
                 $('#abstract_body_count').closest('div').removeClass('text-success')
             }else{

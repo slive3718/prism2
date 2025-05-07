@@ -75,7 +75,7 @@ $(function() {
                 });
 
                 let abstract_body_count = parseInt($('#abstract_body_count').text());
-                let totalWordsCount = abstract_body_count + + parseInt($('#image_caption_body_count').text())
+                let totalWordsCount = abstract_body_count + parseInt($('#image_caption_body_count').text())
 
                 let formData = new FormData(form);
                 formData.append('abstract_body_count', abstract_body_count)
@@ -86,8 +86,8 @@ $(function() {
                     return false;
                 }
 
-                if(totalWordsCount > 2500){
-                    toastr.error('Total words exceed 2500 limit.')
+                if(abstract_body_count > 400){
+                    toastr.error('Total words exceed 400 limit.')
                     return false;
                 }
 

@@ -1,54 +1,51 @@
 var WordCounterHelper = (function () {
-    function updateCharCount(textarea, charCountDisplay) {
-        let text = textarea.val();
+    function updateWordCount(textarea, wordCountDisplay) {
+        let text = textarea.val().trim();
 
-        // Count all characters including spaces
-        let charCount = text.length;
+        // Match words using regex (splits on whitespace, filters out empty)
+        let wordCount = text === '' ? 0 : text.split(/\s+/).length;
 
-        charCountDisplay.text('Character count with spaces: ' + charCount);
+        wordCountDisplay.text('Word count: ' + wordCount);
 
-        if (charCount > 2500) {
-            charCountDisplay.addClass('text-danger');
+        if (wordCount > 500) {
+            wordCountDisplay.addClass('text-danger');
         } else {
-            charCountDisplay.removeClass('text-danger');
+            wordCountDisplay.removeClass('text-danger');
         }
     }
 
-    function countTotalChars(charCountSelectors, totalDisplay) {
-        let totalCharsSum = 0;
+    function countTotalWords(wordCountSelectors, totalDisplay) {
+        let totalWords = 0;
 
-        charCountSelectors.each(function () {
-            let charCount = parseInt($(this).text().replace(/\D+/g, ''), 10) || 0;
-            totalCharsSum += charCount;
+        wordCountSelectors.each(function () {
+            let wordCount = parseInt($(this).text().replace(/\D+/g, ''), 10) || 0;
+            totalWords += wordCount;
         });
 
-        totalDisplay.html(totalCharsSum);
+        totalDisplay.html(totalWords);
 
-        if (totalCharsSum > 2500) {
-            totalDisplay.closest('div').addClass('text-danger');
-            totalDisplay.closest('div').removeClass('text-success');
+        if (totalWords > 500) {
+            totalDisplay.closest('div').addClass('text-danger').removeClass('text-success');
         } else {
-            totalDisplay.closest('div').removeClass('text-danger');
-            totalDisplay.closest('div').addClass('text-success');
+            totalDisplay.closest('div').removeClass('text-danger').addClass('text-success');
         }
     }
 
-    function runCounter(textareaSelector, charCountSelector, totalCharCountSelector) {
+    function runCounter(textareaSelector, wordCountSelector, totalWordCountSelector) {
         $(textareaSelector).off('input keydown').on('input keydown', function (event) {
             let textarea = $(this);
-            let charCountDisplay = textarea.siblings(charCountSelector);
+            let wordCountDisplay = textarea.siblings(wordCountSelector);
 
-            // Only count characters when input changes or when space is pressed
             if (event.type === 'input' || event.key === ' ') {
-                updateCharCount(textarea, charCountDisplay);
-                countTotalChars($(charCountSelector), $(totalCharCountSelector));
+                updateWordCount(textarea, wordCountDisplay);
+                countTotalWords($(wordCountSelector), $(totalWordCountSelector));
             }
         });
     }
 
     return {
         init: runCounter,
-        updateCharCount: updateCharCount,
-        countTotalChars: countTotalChars
+        updateWordCount: updateWordCount,
+        countTotalWords: countTotalWords
     };
 })();
