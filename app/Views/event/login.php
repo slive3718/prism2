@@ -1,115 +1,153 @@
-<link href="<?=base_url()?>/assets/css/event/login.css" rel="stylesheet">
 
 <?php echo view('event/common/menu'); ?>
 <style>
     :root {
         --primary-color: #024464;
         --secondary-color: #00948b;
-        --primary-hover: #0b5ed7;
-        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --glass-blur: 12px;
+        --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+        background-attachment: fixed;
+        font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
     main {
         min-height: 100vh;
         display: flex;
         align-items: center;
-        padding: 20px 0;
-    }
+        justify-content: center;
+        padding: 20px;
 
-    body .container-fluid{
-        /*background-color: var(--primary-color);*/
     }
 
     .login-container {
+        margin:auto;
+        width: 100%;
         max-width: 750px;
-        margin: 0 auto;
-        animation: fadeIn 0.6s ease-in-out;
-        background-color: var(--primary-color);
-        padding: 20px;
-        border-radius: 10px;
+        backdrop-filter: blur(var(--glass-blur));
+        background: linear-gradient(90deg,rgba(0, 66, 98, 1) 0%, rgba(87, 150, 199, 1) 50%, rgba(0, 66, 98, 1) 100%);
+        border-radius: 24px;
+        border: var(--glass-border);
+        box-shadow: 0 8px 32px rgba(0, 66, 98, 0.3);
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Frosted glass overlay */
+    .login-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);*/
+        z-index: -1;
+        border-radius: inherit;
     }
 
     .login-header {
         font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 2rem;
-        /*color: var(--primary-color);*/
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        letter-spacing: 1px;
+        margin-bottom: 1.5rem;
         color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        letter-spacing: 1px;
+        padding: 1.5rem 2rem 0;
     }
 
     .card {
-        border: none;
-        border-radius: 12px;
-        box-shadow: var(--card-shadow);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 0 2rem 2rem;
     }
 
     .card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
     }
 
     .card-header {
-        background-color: var(--secondary-color);
+        background: var(--secondary-color);
         color: white;
         font-size: 1.1rem;
         padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .card-body{
-        font-size:16px;
-    }
-
-    .form-signin {
-        max-width: 750px;
-        background: white;
-        padding: 2.5rem;
-        border-radius: 12px;
-        box-shadow: var(--card-shadow);
-        margin-top: 2rem;
-    }
-
-    .form-floating {
-        margin-bottom: 1.5rem;
+    .card-body {
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.7);
     }
 
     .form-control {
         height: 50px;
         border-radius: 8px;
         padding: 0 20px;
-        border: 1px solid #ced4da;
-        transition: all 0.1s;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        transition: all 0.2s;
     }
 
     .form-control:focus {
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        box-shadow: 0 0 0 0.25rem rgba(2, 68, 100, 0.15);
         border-color: var(--primary-color);
+        background: white;
+    }
+
+    .form-signin{
+        width: 700px;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 0 2rem 2rem;
+        padding: 20px;
     }
 
     .SignInBtn {
         width: 100%;
-        padding: 12px;
+        padding: 14px;
         font-weight: 600;
         font-size: 1.1rem;
         border-radius: 8px;
-        background-color: var(--secondary-color);
+        background: var(--secondary-color);
         border: none;
+        color: white;
         transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0, 148, 139, 0.3);
+        margin-top: 1.5rem
     }
 
     .SignInBtn:hover {
-        background-color: var(--primary-hover);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+        box-shadow: 0 6px 20px rgba(2, 68, 100, 0.4);
+        background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     }
 
-    .section-title {
-        font-weight: 600;
-        color: #495057;
-        margin-bottom: 0.5rem;
+    /* Floating label adjustments */
+    .form-floating label {
+        color: #555;
+        margin-bottom: 1.5rem;
     }
+
+    .form-floating>.form-control:focus~label {
+        color: var(--primary-color);
+    }
+
+    /* Link hover effects */
 
     .forgotPasswordBtn {
         color: var(--primary-color);
@@ -123,20 +161,8 @@
         text-decoration: underline;
     }
 
-    .create-account-link {
-        color: var(--primary-color);
-        font-weight: 500;
-        transition: all 0.2s;
-    }
-
-    .create-account-link:hover {
-        color: var(--primary-hover);
-        text-decoration: none;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    .password-container {
+        position: relative;
     }
 
     .password-toggle {
@@ -149,8 +175,25 @@
         z-index: 5;
     }
 
-    .password-container {
-        position: relative;
+
+    /* Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-container {
+        animation: fadeIn 0.6s ease-out;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .login-container {
+            border-radius: 16px;
+        }
+        .card {
+            margin: 0 1rem 1rem;
+        }
     }
 </style>
 <main style="margin: unset; padding-bottom:200px">
