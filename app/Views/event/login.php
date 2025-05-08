@@ -151,7 +151,6 @@
     /* Link hover effects */
 
     .forgotPasswordBtn {
-        color: var(--primary-color);
         font-weight: 500;
         text-decoration: none;
         transition: all 0.2s;
