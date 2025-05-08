@@ -17,6 +17,11 @@ class PapersModel extends Model
     protected $beforeFind = ['excludeDeletedRecords'];
     private $error;
 
+    protected $useTimestamps = true;
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $dateFormat  	 = 'datetime';
+
 
     function __construct(ConnectionInterface $db = null, ValidationInterface $validation = null)
     {
