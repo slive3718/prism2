@@ -303,7 +303,7 @@
                 </div>
 
                 <div class="card shadow">
-                    <div class="card-header fw-bold"> Image Uploads <?=(isset($incomplete['image_uploads'])? '<span class="text-danger text-sm badge " title="Please complete requirements before finalizing abstract."><i class="fas fa-exclamation-circle" > INCOMPLETE </i></span>' :'')?>  <a href="<?=base_url()?>/user/authors_and_copyright/<?=$paper_id?>" class="btn btn-sm btn-primary float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a></div>
+                    <div class="card-header fw-bold"> Image Uploads <?=(isset($incomplete['image_uploads'])? '<span class="text-danger text-sm badge " title="Please complete requirements before finalizing abstract."><i class="fas fa-exclamation-circle" > INCOMPLETE </i></span>' :'')?>  <a href="<?=base_url()?>/user/presentation_upload/<?=$paper_id?>" class="btn btn-sm btn-primary float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a></div>
                     <div class="card-body">
                         <table class="table" style="margin-bottom:0px !important">
                             <tbody>
