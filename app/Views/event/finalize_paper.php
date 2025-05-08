@@ -303,6 +303,33 @@
                 </div>
 
                 <div class="card shadow">
+                    <div class="card-header fw-bold"> Image Uploads <?=(isset($incomplete['image_uploads'])? '<span class="text-danger text-sm badge " title="Please complete requirements before finalizing abstract."><i class="fas fa-exclamation-circle" > INCOMPLETE </i></span>' :'')?>  <a href="<?=base_url()?>/user/authors_and_copyright/<?=$paper_id?>" class="btn btn-sm btn-primary float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a></div>
+                    <div class="card-body">
+                        <table class="table" style="margin-bottom:0px !important">
+                            <tbody>
+                            <?php if ($paper_uploads): ?>
+                                <tr>
+                                    <td class="text-end align-top" style="width: 250px;">
+                                        Uploaded Files:
+                                    </td>
+                                <?php foreach ($paper_uploads as $upload): ?>
+                                    <td>
+                                        <a href="<?= base_url().$upload['file_path'].$upload['file_name']?>" target="_blank" download="">
+                                            <img class="img-thumbnail" style="max-width: 200px; max-height: 100px"  src="<?= base_url().$upload['file_path'].$upload['file_name']?>">
+                                            <br>
+                                            <?= $upload['file_name']?>
+                                        </a>
+                                    </td>
+                                <?php endforeach; ?>
+                                    <td style="width: 100px;"><a href="<?=base_url().'user/presentation_upload/'.$paper_id?>" class="float-end btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit </a></td>
+                                </tr>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card shadow">
                     <div class="card-header fw-bold"> User Information </div>
                     <div class="card-body">
                         <table class="table">
