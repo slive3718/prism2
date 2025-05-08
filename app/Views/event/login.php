@@ -9,7 +9,7 @@
     }
 
     body {
-        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+        background: #FFFFFF;
         background-attachment: fixed;
         font-family: 'Segoe UI', system-ui, sans-serif;
     }
