@@ -371,11 +371,11 @@ $(function(){
                 return true;
             }
         })
-        // const countWordsError = $('.counted_words').each(function(){
-        //     if($(this).hasClass('text-danger')){
-        //         return true;
-        //     }
-        // })
+
+        if($('#cv_preview').attr('has_Val') != '1'){
+            toastr.error('Lead Presenter CV cannot be empty.')
+            return  false;
+        }
 
         if (Object.values(countWordsError).some(val => val === true)) {
             toastr.error('Words Limit exceed!')
