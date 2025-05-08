@@ -87,6 +87,7 @@
     .card-body {
         padding: 2rem;
         background: rgba(255, 255, 255, 0.7);
+        font-size: 15px;
     }
 
     .form-control {
