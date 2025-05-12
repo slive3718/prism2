@@ -221,7 +221,7 @@
 
 
 <div class="row mt-5">
-    <div class="col-md-12 text-center mt-md-4" style="width: 60% !important; margin:auto">
+    <div class="col-md-12 text-center mt-md-4" style="margin:auto">
         <img id="main-banner" src="<?=base_url()?>main_banner.png" class=" figure-img" alt="Main Banner" style="width: 100% !important;object-fit: cover;" />
     </div>
 </div>
